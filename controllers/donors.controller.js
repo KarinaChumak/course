@@ -135,5 +135,47 @@ exports.addDonation = function (req) {
 
 })};
 
+exports.delete = function(req){
+    return new Promise (function(resolve, reject){
+            Donor.remove({_id : req.user._id},function(err){
+            if(err) reject(JSON.parse('"status": "error"'));
+            resolve('"status": "deleted"');
+        });
+    });
+};
 
 
+//todo check if email exists
+exports.update = function(req){
+    return new Promise(function (resolve,reject){
+        Donor.findOne({'_id' : req.user._id},' ',function(err, donor){
+            if(err)
+                reject(err);
+            if (donor){
+                if(req.body.name) donor.name = req.body.name;
+                if(req.body.surname) donor.surname = req.body.surname;
+                if(req.body.patronymic) donor.patronymic = req.body.patronymic;
+                if(req.body.birthdate) donor.birthdate = req.body.birthdate;
+                if(req.body.email) {
+                    Donor.findOne({'email' : req.body.email}, '-__v', function(err, res){
+                        if(res){reject ('"status": "Such user exists"')}
+                        else donor.email = req.body.email;
+                    });
+                }
+
+                if(req.body.birthdate) donor.birthdate = req.body.birthdate;
+                if(req.body.city) donor.city = req.body.city;
+                if(req.body.password && req.body.password == req.body.password2)
+                    donor.password = hash.sha512(req.body.password).passwordHash;
+
+                donor.save(function(err){
+                    if(err)
+                        reject('"status":"not saved"');
+                    resolve('"status": "updated"');
+                });}
+            else
+                reject('"status": "not found"');
+
+        });
+    });
+};

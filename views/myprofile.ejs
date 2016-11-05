@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+
+
+    <title><%= donor.name + ' ' + donor.surname %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+   <h1><%= donor.name + ' ' + donor.surname %></h1>
+
+   <% if (donor.avatar) { %>
+   <img src='data:image/jpg;base64,<%= donor.avatar %>' width=100 height=100 />
+   <% } else { %>
+   <p>
+       No avatar
+   </p>
+   <% } %>
+   <!--<form action = '/donors/changeName' method = post>-->
+       <!--New Name:-->
+       <!--<input type = text name = 'newName'/>-->
+       <!--<br/>-->
+       <!--<input type = 'submit' value = 'Change name'/>-->
+       <!--</form>-->
+   <form action='/donors/upload_avatar' method='POST' enctype="multipart/form-data">
+           Avatar:
+            <br />
+           <input type='file' name='avatar' />
+            <br />
+           <button type='submit' class='btn btn-primary'>Upload</button>
+   </form>
+   <br/>
+
+   <form action="/donors/profile/update" method="get">
+       <input type="submit" value="Change info"/>
+   </form>
+
+   <form action = "/donors/profile/addDonation" method = "post">
+       New donation:
+       <input type = 'date' name = 'donation'>
+       <br/>
+       <input type = 'submit' value="Add new donation">
+
+   </form>
+
+   <br/>
+   <form action  = '/logOut' method="post">
+       <input type="submit" value="Log out">
+   </form>
+
+   <br/>
+  <button id = btn>Delete profile</button>
+   <script>
+
+       $( "#btn" ).click(function() {
+           $.ajax({
+               url: '/donors/profile/delete?',
+               type: 'DELETE',
+               success: function(result) {
+               }
+           });
+       });
+   </script>
+
+</body>
+</html>

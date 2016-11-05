@@ -26,6 +26,12 @@ router.get('/profile/update', function (req,res) {
     res.render('../views/donorupdate');
 });
 
+router.post('/profile/update', function (req,res) {
+    donorsController.update(req)
+        .then(()=>res.redirect('/donors/profile'))
+            .catch((err)=>res.json(err));
+
+});
 
 
 router.post('/profile/addDonation',function(req,res){
@@ -35,6 +41,11 @@ router.post('/profile/addDonation',function(req,res){
 
 });
 
+router.delete('/profile/delete', function(req,res){
+       donorsController.delete(req)
+        .then(()=>res.end("deleted"))
+        .catch(()=> res.end("error"));
+});
 
 router.post('/upload_avatar',
     function (req,res){
