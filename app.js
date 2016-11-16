@@ -5,13 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var busboyBodyParser = require('busboy-body-parser');
-
+var passport = require('passport');
+var session = require('express-session');
 var mongoose = require ('mongoose');
 
 
 var index = require('./routes/index');
 var admin = require('./routes/admin');
 var donors = require('./routes/donors');
+var recipient = require('./routes/recipient');
 var app = express();
 
 
@@ -28,6 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(busboyBodyParser({ limit: '5mb' }));
 app.use(cookieParser());
+app.use(session({secret: 'GytR5'}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 require('./config/passport')(app);
@@ -36,6 +39,7 @@ require('./config/passport')(app);
 app.use('/', index);
 app.use('/admin', admin);
 app.use ('/donors', donors);
+app.use('/recipient',recipient);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
