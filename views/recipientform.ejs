@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add new recipient</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1>Register recipient</h1>
+<form action = '/recipient/create'  METHOD="post">
+    Name:
+    <input type = 'text' name = 'name'/>
+    <br/>
+    Surname:
+    <input type = 'text' name = 'surname'/>
+    <br/>
+    Diagnose:
+    <input type = 'text' name = 'diagnose'/>
+    <br/>
+    Group:
+    <input list="groups" name="group">
+    <datalist id = 'groups'>
+        <option value = "1"> First</option>
+        <option value = "2">Second</option>
+        <option value = "3">Third</option>
+        <option value  = "4">Fourth</option>
+    </datalist>
+    <br/>
+    Rhesus:
+    <input list="rhesus" name="rhesus">
+    <datalist id = 'rhesus'>
+        <option value= "positive">+</option>
+        <option value = "negative">-</option>
+    </datalist>
+    <br/>
+
+    <input type = 'submit' value = 'Send form'/>
+
+</form>
+
+
+</body>
+</html>

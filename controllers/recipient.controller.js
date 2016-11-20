@@ -44,3 +44,33 @@ exports.getAccepted = function () {
     });
 };
 
+exports.delete = function (id) {
+
+    return new Promise(function(resolve, reject){
+        Recipient.remove({_id:id},function (err,result) {
+            if(err) reject(err);
+            resolve(result);
+
+        });
+
+    });
+};
+
+
+
+//todo
+exports.changeStatus = function (id){
+    return new Promise(function (resolve, reject){
+       Recipient.findOne({_id:id},function (err,recipient) {
+            if(err) reject(err);
+            recipient.status = "accepted";
+            recipient.save(function(err,res){
+                if(err) reject(err);
+                resolve(res);
+            })
+
+        });
+
+
+    });
+};
