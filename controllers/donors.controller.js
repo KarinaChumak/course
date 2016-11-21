@@ -24,6 +24,7 @@ exports.create = function (req,res) {
           rhesus: req.body.rhesus
 
       });
+
       donor.donations.push(req.body.lastDonation);
       donor.save(function(err,user){
           if(err) reject(err);
