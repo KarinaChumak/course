@@ -23,7 +23,7 @@
         <script>
             $("#btn<%=i%>").click(function() {
                 $.ajax({
-                    url: '/admin/delete/?' + $.param({id  : '<%=recipients[i]._id%>'}),
+                    url: '/api/admin/delete/?' + $.param({id  : '<%=recipients[i]._id%>'}),
                     type: 'DELETE',
                     success: function(result) {
                     }
@@ -35,7 +35,7 @@
         <script>
             $("#button<%=i%>").click(function() {
                 $.ajax({
-                    url: '/admin/accept/?' + $.param({id  : '<%=recipients[i]._id%>'}),
+                    url: '/api/admin/accept/?' + $.param({id  : '<%=recipients[i]._id%>'}),
                     type: 'POST',
                     success: function(result) {
                     }

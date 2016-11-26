@@ -12,8 +12,9 @@ var mongoose = require ('mongoose');
 
 var index = require('./routes/index');
 var admin = require('./routes/admin');
-var donors = require('./routes/donors');
-var recipient = require('./routes/recipient');
+var apiRouter = require('./routes/api');
+var profile = require('./routes/profile');
+
 var app = express();
 
 
@@ -38,8 +39,8 @@ require('./config/passport')(app);
 
 app.use('/', index);
 app.use('/admin', admin);
-app.use ('/donors', donors);
-app.use('/recipient',recipient);
+app.use('/profile',profile);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

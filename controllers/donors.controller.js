@@ -2,14 +2,14 @@ var mongoose = require ('mongoose');
 var Donor = require('../models/donor.model');
 var hash = require('../config/hash');
 const TWO_MONTH= 2*30*24*60*60*1000;
+var status = require('../config/status');
 
-//todo check if email exists
 exports.create = function (req,res) {
   return new Promise(function(resolve, reject){
-      Donor.findOne({'email' : email}, '-__v', function(err, donor){
-          if(err) reject(err);
-          if(donor) reject();
-      });
+      // Donor.findOne({'email' : email}, '-__v', function(err, donor){
+      //     if(err) reject(err);
+      //     if(donor) reject(status.user_exists);
+      // });
 
       var donor = new Donor({
           name : req.body.name,
@@ -26,10 +26,9 @@ exports.create = function (req,res) {
       });
 
       donor.donations.push(req.body.lastDonation);
-      donor.save(function(err,user){
-          if(err) reject(err);
-          resolve(user);
-
+            donor.save(function(err,user){
+          if(user)  resolve(user);
+            reject(err);
       });
   });
 };
@@ -43,9 +42,9 @@ function isAvailable(req){
 };
 
 
-exports.getAll = function () {
+exports.getAll = function (params) {
     return new Promise(function (resolve,reject){
-        Donor.find({}, '-__id -__v', function(err, donors){
+        Donor.find(params, '-__id -__v -avatar', function(err, donors){
             if(err) reject(err);
            resolve(donors);
 
@@ -53,19 +52,6 @@ exports.getAll = function () {
     });
 };
 
-
-exports.changeName = function(req){
-    return new Promise(function (resolve, reject){
-        Donor.update({'email' : req.user.email}, {$set: {name : req.body.newName}},function(err, donor){
-            if(err)
-                reject(err);
-            if(donor)
-                resolve (donor);
-            reject('Not found');
-    });
-
-    });
-};
 
 exports.changeAvatar = function(req,base64String ){
     return new Promise (function (resolve, reject){
@@ -78,12 +64,12 @@ exports.changeAvatar = function(req,base64String ){
                 donor.save(function(err){
                     if(err)
                         reject(err);
-                    resolve('"status": "updated"');
+                    resolve(status.added_avatar);
                 });
 
             }
             else
-                reject(JSON.parse('"status": "not found"'));
+                reject(status.donor_not_found);
 
         });
 })};
@@ -96,7 +82,7 @@ exports.getByEmail = function(email){
          if(donor)
              resolve (donor);
          else
-             reject('Not found');
+             reject(status.donor_not_found);
      });
  });
 };
@@ -109,7 +95,7 @@ exports.getById = function(req){
           if(donor)
               resolve (donor);
           else
-              reject('Not found');
+              reject(status.donor_not_found);
       });
   });
 };
@@ -125,11 +111,11 @@ exports.addDonation = function (req) {
                 donor.save(function(err){
                     if(err)
                         reject(err);
-                    resolve('"status": "updated"');
+                    resolve(status.saved);
                 });
             }
             else
-                reject(JSON.parse('"status": "not found"'));
+                reject(status.donor_not_found);
 
 
     });
@@ -139,8 +125,8 @@ exports.addDonation = function (req) {
 exports.delete = function(req){
     return new Promise (function(resolve, reject){
             Donor.remove({_id : req.user._id},function(err){
-            if(err) reject(JSON.parse('"status": "error"'));
-            resolve('"status": "deleted"');
+            if(err) reject(err);
+            resolve(status.deleted);
         });
     });
 };
@@ -159,7 +145,7 @@ exports.update = function(req){
                 if(req.body.birthdate) donor.birthdate = req.body.birthdate;
                 if(req.body.email) {
                     Donor.findOne({'email' : req.body.email}, '-__v', function(err, res){
-                        if(res){reject ('"status": "Such user exists"')}
+                        if(res){reject (status.user_exists)}
                         else donor.email = req.body.email;
                     });
                 }
@@ -171,11 +157,11 @@ exports.update = function(req){
 
                 donor.save(function(err){
                     if(err)
-                        reject('"status":"not saved"');
-                    resolve('"status": "updated"');
+                        reject(err);
+                    resolve(status.saved);
                 });}
             else
-                reject('"status": "not found"');
+                reject(status.donor_not_found);
 
         });
     });

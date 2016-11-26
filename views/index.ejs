@@ -5,16 +5,9 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-  <form action="/newdonor">
-   <input type="submit" value="I wanna become a donor" />
-  </form>
+  <table>
 
-  <form action="/new_recipient">
-    <input type="submit" value="I need donor" />
-  </form>
-
-  <br/>
-  <form action = '/logIn' METHOD="post">
+  <form action = '/api/auth/logIn' METHOD="post">
 
     Email:
     <input type = 'email' name = 'email'/>
@@ -24,5 +17,15 @@
     <br/>
     <input type = 'submit' value = 'LogIn'/>
     </form>
+    <br/>
+    <br/>
+    <form action="/newdonor">
+      <input type="submit" value="I want to become a donor" />
+    </form>
+    <br/>
+    <form action="/new_recipient">
+      <input type="submit" value="I need donor" />
+    </form>
+  </table>
   </body>
 </html>

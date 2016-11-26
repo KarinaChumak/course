@@ -25,7 +25,7 @@
        <!--<br/>-->
        <!--<input type = 'submit' value = 'Change name'/>-->
        <!--</form>-->
-   <form action='/donors/upload_avatar' method='POST' enctype="multipart/form-data">
+   <form action='/api/profile/upload_avatar' method='POST' enctype="multipart/form-data">
            Avatar:
             <br />
            <input type='file' name='avatar' />
@@ -34,11 +34,11 @@
    </form>
    <br/>
 
-   <form action="/donors/profile/update" method="get">
+   <form action="/profile/update" method="get">
        <input type="submit" value="Change info"/>
    </form>
 
-   <form action = "/donors/profile/addDonation" method = "post">
+   <form action = "/api/profile/addDonation" method = "post">
        New donation:
        <input type = 'date' name = 'donation'>
        <br/>
@@ -47,7 +47,7 @@
    </form>
 
    <br/>
-   <form action  = '/logOut' method="post">
+   <form action  = '/api/auth/logOut' method="post">
        <input type="submit" value="Log out">
    </form>
 
@@ -57,7 +57,7 @@
 
        $( "#btn" ).click(function() {
            $.ajax({
-               url: '/donors/profile/delete?',
+               url: '/profile/delete?',
                type: 'DELETE',
                success: function(result) {
                }
