@@ -40,6 +40,7 @@
 
    <form action = "/api/profile/addDonation" method = "post">
        New donation:
+       <br/>
        <input type = 'date' name = 'donation'>
        <br/>
        <input type = 'submit' value="Add new donation">
@@ -57,7 +58,7 @@
 
        $( "#btn" ).click(function() {
            $.ajax({
-               url: '/profile/delete?',
+               url: '/api/profile/delete?',
                type: 'DELETE',
                success: function(result) {
                }

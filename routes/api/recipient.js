@@ -11,7 +11,7 @@ var recipientController = require ('../../controllers/recipient.controller');
 var status = require('../../config/status');
 
 
-router.get('/recipients',function(req,res){
+router.get('/',function(req,res){
     recipientController.getAccepted()
         .then((recip)=>res.json(recip))
         .catch((err)=> res.json(err));

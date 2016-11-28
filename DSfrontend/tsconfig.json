@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "moment": "node_modules/moment/moment.js",
+    "ng2-bootstrap/ng2-bootstrap": "node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js"
+  }
+}

@@ -1,0 +1,46 @@
+<div ng-app="myApp" >
+
+    Name:
+    <input type = 'text' [(ngModel)] = 'donor.name'/>
+    <br/>
+    Surname:
+    <input type = 'text' [(ngModel)] = 'donor.surname'/>
+    <br/>
+    Patronym:
+    <input type = 'text' [(ngModel)] = 'donor.patronymic'/>
+    <br/>
+    Email:
+    <input type = 'text' [(ngModel)]="donor.email"/>
+    <br/>
+    Password:
+    <input type = "password" [(ngModel)]="donor.password"/>
+    <br/>
+    Date of birth:
+    <input type = 'date' [(ngModel)] = 'donor.birthdate'/>
+    <br/>
+    City:
+    <input type = 'text' [(ngModel)] = 'donor.city'/>
+    <br/>
+    Group:
+    <input list="groups" [(ngModel)]="donor.group">
+    <datalist id = 'groups'>
+        <option value = "1"> First</option>
+        <option value = "2">Second</option>
+        <option value = "3">Third</option>
+        <option value  = "4">Fourth</option>
+    </datalist>
+    <br/>
+    Rhesus:
+    <input list="rhesus" [(ngModel)]="donor.rhesus">
+    <datalist id = 'rhesus'>
+        <option value= "positive">+</option>
+        <option value = "negative">-</option>
+    </datalist>
+    <br/>
+
+
+    <button type="submit" class="btn btn-primary btn-lg" (click)="onClick()">Sign up</button>
+
+</div>
+
+<script src="auth.controller.ts"></script>

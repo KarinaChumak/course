@@ -6,7 +6,19 @@ var router = express.Router();
 var donorsController = require('../../controllers/donors.controller');
 "use strict";
 
+
 router.get('/', function (req,res){
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+// Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+
+// Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', '*');
+
+// Set to true if you need the website to include cookies in requests
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
     let params = {};
     if(req.query.group){
          params.group = parseInt(req.query.group);
@@ -20,6 +32,13 @@ router.get('/', function (req,res){
     donorsController.getAll(params)
         .then((donors)=>res.json( donors))
         .catch((err)=>res.json(err));
+});
+
+router.get('/:id', function (req,res){
+    donorsController.getById(id)
+        .then((donor)=>res.json(donor))
+        .catch((err)=>res.json(err));
+
 });
 
 module.exports = router;

@@ -15,6 +15,7 @@ var admin = require('./routes/admin');
 var apiRouter = require('./routes/api');
 var profile = require('./routes/profile');
 
+
 var app = express();
 
 
@@ -37,10 +38,32 @@ app.use(express.static(path.join(__dirname, 'public')));
 require('./config/passport')(app);
 
 
+// app.use(function(req,res,next){
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//
+// // Request methods you wish to allow
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//
+// // Request headers you wish to allow
+//   res.setHeader('Access-Control-Allow-Headers', 'content-type');
+//
+// // Set to true if you need the website to include cookies in requests
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+// });
+
+app.use(express.static(path.join(__dirname, 'DSfrontend')));
+
 app.use('/', index);
 app.use('/admin', admin);
 app.use('/profile',profile);
 app.use('/api', apiRouter);
+
+
+app.all("/*", (req, res, next) => {
+  res.sendFile("index.html", { root: __dirname + "/DSfrontend" });
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

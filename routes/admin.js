@@ -5,8 +5,10 @@ var recipientController = require ('../controllers/recipient.controller');
 var status = require('../config/status');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.end('Admin panel');
+router.get('/', function(req, res) {
+  if(req.user && req.user.role)
+  res.render('adminpanel');
+  else res.json(status.no_rights);
 });
 
 

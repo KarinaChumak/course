@@ -35,6 +35,32 @@ router.post('/update', function (req,res) {
 });
 
 
+router.get('/',function(req,res){
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+// Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+
+// Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', '*');
+
+// Set to true if you need the website to include cookies in requests
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    if(req.user){
+        donorsController.getById(req.user._id)
+            .then ((result)=>res.json(result))
+            .catch((err)=>{
+                // if (req.user.role){
+                //     res.redirect('/admin/');
+                // }
+                // else
+                    res.json(err);
+            });
+    }
+    else res.json(status.log_in);
+});
+
 router.post('/addDonation',function(req,res){
     donorsController.addDonation(req)
         .then((result)=>res.json(result))
