@@ -87,9 +87,9 @@ exports.getByEmail = function(email){
  });
 };
 
-exports.getById = function(req){
+exports.getById = function(id){
   return new Promise(function (resolve,reject){
-      Donor.findOne({'_id' : req.user._id},' ',function(err, donor){
+      Donor.findOne({'_id' : id},' ',function(err, donor){
           if(err)
               reject(err);
           if(donor)

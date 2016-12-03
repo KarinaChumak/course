@@ -1,0 +1,38 @@
+
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+
+    <div class='panel-body'>
+
+        <div class='table-responsive'>
+            <table class='table'>
+                <thead>
+                <tr>
+
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Отчество</th>
+                    <th>Дата рождения</th>
+                    <th>Кроводачи</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor='let donor of donors '>
+
+                    <td>{{donor.name}} </td>
+                    <td>{{donor.surname }}</td>
+                    <td>{{donor.patronymic}}</td>
+                    <td>{{donor.birthdate}}</td>
+                    <td>
+                        <div  *ngFor="let donation of donor.donations">{{donation}}</div>
+
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

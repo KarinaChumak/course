@@ -1,0 +1,15 @@
+[
+ {
+    "name": "Ivan",
+    "surname": "Ivanov",
+    "patronymic": "Ivanovich",
+    "birthdate":  "2016-11-17T00:00:00.000Z",
+    "email": "ivn@gmail.com",
+    "password": "bbe1bdcb5f8843feb36a8bb7d880d5aea7aad8bc9949d32d0a16f36b1dd753a67d1d5c29037eeeaddedb8c3258c3295f529a5a4bbdabcafd919e40ed4e2671df",
+    "city": "Киев",
+    "available": false,
+    "group": 1,
+    "rhesus": "negative",
+    "donations":["First", "Second", "third", "fourth", "fifth"]
+}
+]
