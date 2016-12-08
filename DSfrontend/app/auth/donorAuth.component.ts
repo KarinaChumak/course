@@ -4,10 +4,10 @@ import {AuthService} from "./auth.service";
 import {IDonor} from "../donors/donor";
 
 @Component({
-    templateUrl:'app/auth/authForm.component.html'
+    templateUrl:'app/auth/donorAuth.component.html'
 
 })
-export class AuthFormComponent{
+export class DonorAuthComponent{
     donor:IDonor={};
 
     errorMessage: string;

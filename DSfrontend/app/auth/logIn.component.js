@@ -10,23 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var auth_service_1 = require("./auth.service");
-var DonorAuthComponent = (function () {
-    function DonorAuthComponent(_authService) {
+var LoginComponent = (function () {
+    function LoginComponent(_authService) {
         this._authService = _authService;
-        this.donor = {};
+        this.password = "";
+        this.email = "";
     }
-    DonorAuthComponent.prototype.onClick = function () {
+    LoginComponent.prototype.onClick = function () {
         var _this = this;
-        this._authService.signUp(this.donor)
-            .subscribe(function (status) { return console.log(status); }, function (error) { return _this.errorMessage = error; });
+        this._authService.logIn(this.email, this.password)
+            .subscribe(function (status) { return console.log(_this.email); }, function (error) { return _this.errorMessage = error; });
     };
-    DonorAuthComponent = __decorate([
+    LoginComponent = __decorate([
         core_1.Component({
-            templateUrl: 'app/auth/donorAuth.component.html'
+            selector: 'login',
+            templateUrl: 'app/auth/login.component.html'
         }), 
         __metadata('design:paramtypes', [auth_service_1.AuthService])
-    ], DonorAuthComponent);
-    return DonorAuthComponent;
+    ], LoginComponent);
+    return LoginComponent;
 }());
-exports.DonorAuthComponent = DonorAuthComponent;
-//# sourceMappingURL=donorAuth.component.js.map
+exports.LoginComponent = LoginComponent;
+//# sourceMappingURL=logIn.component.js.map
