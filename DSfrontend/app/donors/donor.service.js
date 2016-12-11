@@ -14,9 +14,11 @@ var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/do');
 require('rxjs/add/operator/catch');
 require('rxjs/add/operator/map');
+var auth_service_1 = require("../auth/auth.service");
 var DonorService = (function () {
-    function DonorService(_http) {
+    function DonorService(_http, _authService) {
         this._http = _http;
+        this._authService = _authService;
     }
     DonorService.prototype.getDonors = function () {
         return this._http.get('api/donors')
@@ -24,13 +26,16 @@ var DonorService = (function () {
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
-    DonorService.prototype.getProfile = function () {
-        return this._http.get('api/profile')
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log(JSON.stringify(data)); })
-            .catch(this.handleError);
-    };
+    //
+    // getProfile():Observable<IDonor>{
+    //     return this._http.get('api/profile')
+    //         .map((response: Response)=><IDonor>response.json())
+    //         .do(data => console.log( JSON.stringify(data)))
+    //         .catch(this.handleError);
+    //
+    // }
     DonorService.prototype.deleteProfile = function () {
+        this._authService.donor = null;
         return this._http.delete("/api/profile/delete")
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log(JSON.stringify(data)); })
@@ -56,7 +61,7 @@ var DonorService = (function () {
     };
     DonorService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, auth_service_1.AuthService])
     ], DonorService);
     return DonorService;
 }());

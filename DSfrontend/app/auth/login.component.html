@@ -1,7 +1,15 @@
-Email:
-<input type = 'text' [(ngModel)]="email"/>
-<br/>
-Password:
-<input type = "password" [(ngModel)]="password"/>
-<br/>
-<button type="submit" class="btn btn-primary btn-lg" (click)="onClick()">Log in</button>
+
+<mdl-card style="width:300px; height: 300px; position:absolute; top: 60px; right: 10px;" mdl-shadow="6">
+    <h3 class="mdl-dialog__title">Login</h3>
+    <div class="mdl-dialog__content">
+        <mdl-textfield #firstElement
+                       type="text"
+                       label="Email"
+                       [(ngModel)]="email" floating-label autofocus></mdl-textfield>
+        <br/>
+        <mdl-textfield type="password" label="Password" [(ngModel)]="password" floating-label></mdl-textfield>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button mdl-button (click)="onClick()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Login</button>
+    </div>
+</mdl-card>

@@ -55,7 +55,6 @@ require('./config/passport')(app);
 app.use(express.static(path.join(__dirname, 'DSfrontend')));
 
 app.use('/', index);
-app.use('/admin', admin);
 app.use('/profile',profile);
 app.use('/api', apiRouter);
 

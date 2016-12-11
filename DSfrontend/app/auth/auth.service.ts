@@ -6,16 +6,23 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {IDonor} from "../donors/donor";
-
-
+import {LocalStorage} from 'ng2-webstorage';
+import {IAdmin} from "../admin/admin";
 
 @Injectable()
-export class AuthService{
+export class AuthService {
+   @LocalStorage()
+   public donor:IDonor ;
+    @LocalStorage()
+    public admin:IAdmin;
+
+
 
 
     constructor(private  _http : Http){
 
     }
+
 
     signUp(donor:IDonor):Observable<Response> {
         return this._http.post('/api/auth/signUp', donor)
@@ -28,11 +35,19 @@ export class AuthService{
     logIn(email:string, password:string):Observable<Response>{
         return this._http.post('/api/auth/logIn', {email :email, password: password})
             .map((response: Response)=>response.json())
-            .do(data => console.log('logged in:  ' +  JSON.stringify(data)))
+            .do(data =>
+                {if(data.role)
+                     {this.admin = <IAdmin>data;
+                      console.log(this.admin)}
+                else
+                    {this.donor= <IDonor>data;
+                    console.log(this.donor)}})
             .catch(this.handleError);
     }
 
-    logOut():Observable<JSON>{
+    logOut():Observable<Response>{
+        this.donor=null;
+        this.admin=null;
         return this._http.get('/api/auth/logOut')
             .map((response: Response)=>response.json())
             .do(data => console.log(JSON.stringify(data)))

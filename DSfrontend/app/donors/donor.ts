@@ -1,10 +1,9 @@
-export interface IDonor{
+import {IUser} from "../auth/admin";
+export interface IDonor extends IUser{
     name:string;
     surname: string;
     patronymic : string;
     birthdate: string;
-    email: string;
-    password:string;
     city: string;
     available: boolean;
     group: number;

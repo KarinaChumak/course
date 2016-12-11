@@ -9,20 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var donor_service_1 = require('../app/donors/donor.service');
 var auth_service_1 = require("./auth/auth.service");
-var recipient_service_1 = require("./recipients/recipient.service");
+var ng2_webstorage_1 = require("ng2-webstorage");
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(_authService) {
+        this._authService = _authService;
         this.pageTitle = 'Donor search';
     }
+    __decorate([
+        ng2_webstorage_1.LocalStorage(), 
+        __metadata('design:type', Object)
+    ], AppComponent.prototype, "donor", void 0);
     AppComponent = __decorate([
         core_1.Component({
             selector: 'pm-app',
             templateUrl: 'app/app.component.html',
-            providers: [donor_service_1.DonorService, auth_service_1.AuthService, recipient_service_1.RecipientService]
+            styles: ["\n    :host {\n      display: block;\n      margin: 10px;\n      \n      \n    }\n    .navbar-default{\n    background-color: rgb(255, 51, 51);\n    \n    \n      }\n      .navbar-right{\n     position: absolute;\n     right: 70px;\n      }\n      \n    .navbar-brand{\n    color: white;\n    }\n    li a {\n    color:white;\n    }\n  "]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [auth_service_1.AuthService])
     ], AppComponent);
     return AppComponent;
 }());

@@ -10,23 +10,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var auth_service_1 = require("./auth.service");
+var router_1 = require("@angular/router");
 var LoginComponent = (function () {
-    function LoginComponent(_authService) {
+    function LoginComponent(_authService, _router) {
         this._authService = _authService;
+        this._router = _router;
         this.password = "";
         this.email = "";
     }
     LoginComponent.prototype.onClick = function () {
         var _this = this;
         this._authService.logIn(this.email, this.password)
-            .subscribe(function (status) { return console.log(_this.email); }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function () {
+            if (_this._authService.admin)
+                _this._router.navigate(['/admin']);
+            else if (_this._authService.donor)
+                _this._router.navigate(['/donorprofile']);
+            else
+                console.log("oops");
+        }, function (error) { return _this.errorMessage = error; });
     };
     LoginComponent = __decorate([
         core_1.Component({
             selector: 'login',
             templateUrl: 'app/auth/login.component.html'
         }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
     ], LoginComponent);
     return LoginComponent;
 }());

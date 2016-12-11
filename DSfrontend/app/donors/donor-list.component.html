@@ -1,38 +1,85 @@
 
-<div class='panel panel-primary'>
-    <div class='panel-heading'>
-        {{pageTitle}}
-    </div>
+<!--<div class='panel panel-primary'>-->
+    <!--<div class='panel-heading'>-->
+        <!--{{pageTitle}}-->
+    <!--</div>-->
 
-    <div class='panel-body'>
+    <!--<div class='panel-body'>-->
 
-        <div class='table-responsive'>
-            <table class='table'>
-                <thead>
-                <tr>
+        <!--<div class='table-responsive'>-->
+            <!--<table class='table'>-->
+                <!--<thead>-->
+                <!--<tr>-->
 
-                    <th>Имя</th>
-                    <th>Фамилия</th>
-                    <th>Отчество</th>
-                    <th>Дата рождения</th>
-                    <th>Кроводачи</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor='let donor of donors '>
+                    <!--<th>Имя</th>-->
+                    <!--<th>Фамилия</th>-->
+                    <!--<th>Отчество</th>-->
+                    <!--<th>Дата рождения</th>-->
+                    <!--<th>Кроводачи</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+                <!--<tr *ngFor='let donor of donors '>-->
 
-                    <td>{{donor.name}} </td>
-                    <td>{{donor.surname }}</td>
-                    <td>{{donor.patronymic}}</td>
-                    <td>{{donor.birthdate}}</td>
-                    <td>
-                        <div  *ngFor="let donation of donor.donations">{{donation}}</div>
+                    <!--<td>{{donor.name}} </td>-->
+                    <!--<td>{{donor.surname }}</td>-->
+                    <!--<td>{{donor.patronymic}}</td>-->
+                    <!--<td>{{donor.birthdate}}</td>-->
+                    <!--<td>-->
+                        <!--<div  *ngFor="let donation of donor.donations">{{donation}}</div>-->
 
-                    </td>
+                    <!--</td>-->
 
-                </tr>
-                </tbody>
-            </table>
+                <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+    <mdl-card mdl-shadow="6" style="position: fixed; left:10px; top:80px; width: 250px;height: 500px;">
+            <mdl-textfield
+                    type = "text"
+                    label = "City"
+                    [(ngModel)]="filterBy.city"
+                ></mdl-textfield>
+                    <br/>
+                <mdl-textfield
+                        type = "text"
+                        label = "Group"
+                        [(ngModel)]="filterBy.group"
+                ></mdl-textfield>
+                    <br/>
+                <mdl-textfield
+                        type = "text"
+                        label = "Rhesus"
+                        [(ngModel)]="filterBy.rhesus"
+                ></mdl-textfield>
+                <br/>
+        {{filterBy.city + ' ' + filterBy.group+ ' ' + filterBy.rhesus}}
+
+    </mdl-card>
+    <div *ngIf="(donors|donorFilter:filterBy)">
+        <div class="mdl-grid" align = "center">
+        <div class="mdl-cell mdl-cell--6-col " style="position: relative; top:50px; left:200px;" *ngFor='let donor of donors |donorFilter:filterBy '>
+
+        <mdl-card class="wide-card" mdl-shadow="6" >
+            <mdl-card-title mdl-card-expand>
+                <h2 mdl-card-title-text>{{donor.surname+' '+donor.name}}</h2>
+            </mdl-card-title>
+            <mdl-card-supporting-text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Aenan convallis.
+            </mdl-card-supporting-text>
+            <mdl-card-actions mdl-card-border>
+                <button mdl-button mdl-colored mdl-ripple>
+                    View Updates
+                </button>
+            </mdl-card-actions>
+        </mdl-card>
         </div>
     </div>
 </div>
+
+

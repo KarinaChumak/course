@@ -22,19 +22,17 @@ var DonorProfileComponent = (function () {
         this.avatar = '';
     }
     DonorProfileComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this._donorService.getProfile()
-            .subscribe(function (donor) { return _this.donor = donor; }, function (error) { return _this.errorMessage = error; });
+        this.donor = this._authService.donor;
     };
     DonorProfileComponent.prototype.OnDeleteProfile = function () {
         var _this = this;
         this._donorService.deleteProfile()
-            .subscribe(function (data) { return console.log(data); }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function () { return _this._router.navigate(['/welcome']); }, function (error) { return _this.errorMessage = error; });
     };
     DonorProfileComponent.prototype.OnLogOut = function () {
         var _this = this;
         this._authService.logOut()
-            .subscribe(function (data) { return console.log(data); }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function () { return _this._router.navigate(['/welcome']); }, function (error) { return _this.errorMessage = error; });
     };
     DonorProfileComponent.prototype.OnAddDonation = function () {
         var _this = this;
@@ -44,7 +42,7 @@ var DonorProfileComponent = (function () {
     DonorProfileComponent = __decorate([
         core_1.Component({
             selector: 'donor-profile',
-            templateUrl: 'app/donors/donor-profile.component.html'
+            templateUrl: './app/donors/donor-profile.component.html'
         }), 
         __metadata('design:paramtypes', [donor_service_1.DonorService, auth_service_1.AuthService, router_1.Router])
     ], DonorProfileComponent);

@@ -2,9 +2,16 @@
 import {Component} from "@angular/core";
 import {AuthService} from "./auth.service";
 import {IDonor} from "../donors/donor";
+import {Router} from "@angular/router";
 
 @Component({
-    templateUrl:'app/auth/donorAuth.component.html'
+    templateUrl:'app/auth/donorAuth.component.html',
+    styles:[`
+  
+    .absolute{position: absolute; left:30px;}
+    .relative{position: absolute; right: 30px;}
+    .mdl-dialog__actions{position: absolute; right: 50px;bottom: 10px}
+`]
 
 })
 export class DonorAuthComponent{
@@ -12,7 +19,8 @@ export class DonorAuthComponent{
 
     errorMessage: string;
 
-    constructor( private _authService : AuthService){
+    constructor( private _authService : AuthService,
+    private _router:Router){
 
     }
 
@@ -21,6 +29,7 @@ export class DonorAuthComponent{
         this._authService.signUp(this.donor)
             .subscribe(status => console.log(status),
                 error => this.errorMessage = <any>error);
+
     }
 
 

@@ -14,6 +14,7 @@ var Observable_1 = require("rxjs/Observable");
 require('rxjs/add/operator/do');
 require('rxjs/add/operator/catch');
 require('rxjs/add/operator/map');
+var ng2_webstorage_1 = require('ng2-webstorage');
 var AuthService = (function () {
     function AuthService(_http) {
         this._http = _http;
@@ -25,12 +26,24 @@ var AuthService = (function () {
             .catch(this.handleError);
     };
     AuthService.prototype.logIn = function (email, password) {
+        var _this = this;
         return this._http.post('/api/auth/logIn', { email: email, password: password })
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('logged in:  ' + JSON.stringify(data)); })
+            .do(function (data) {
+            if (data.role) {
+                _this.admin = data;
+                console.log(_this.admin);
+            }
+            else {
+                _this.donor = data;
+                console.log(_this.donor);
+            }
+        })
             .catch(this.handleError);
     };
     AuthService.prototype.logOut = function () {
+        this.donor = null;
+        this.admin = null;
         return this._http.get('/api/auth/logOut')
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log(JSON.stringify(data)); })
@@ -42,6 +55,14 @@ var AuthService = (function () {
         console.error(error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
+    __decorate([
+        ng2_webstorage_1.LocalStorage(), 
+        __metadata('design:type', Object)
+    ], AuthService.prototype, "donor", void 0);
+    __decorate([
+        ng2_webstorage_1.LocalStorage(), 
+        __metadata('design:type', Object)
+    ], AuthService.prototype, "admin", void 0);
     AuthService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

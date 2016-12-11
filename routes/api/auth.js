@@ -12,6 +12,7 @@ var status = require('../../config/status');
 router.get('/logOut', function(req,res){
     req.session.destroy(function () {
         req.logOut();
+        res.json(JSON.parse('{"status" : "success"}'));
         })
 });
 

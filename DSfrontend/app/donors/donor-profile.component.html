@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
 
-    <meta charset="utf-8">
-
-
-    <title> {{donor.name + ' ' + donor.surname }}></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-<body>
 <h1>{{donor.name + ' ' + donor.surname }}</h1>
 
 <!--<div class ='container' *ngIf="donor.avatar">-->
@@ -33,7 +23,6 @@
     <!--<input type="submit" value="Change info"/>-->
 <!--</form>-->
 
-
 New donation:
 <br/>
  <input type = 'date' [(ngModel)]="donation"/>
@@ -44,6 +33,3 @@ New donation:
 <br/>
 <button type="submit" class="btn btn-primary btn-lg"  (click) = 'OnDeleteProfile()'>Delete profile</button>
 
-
-</body>
-</html>

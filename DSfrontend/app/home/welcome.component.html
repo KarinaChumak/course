@@ -1,4 +1,7 @@
-﻿ {{pageTitle}}
- <div class="container">
+﻿<button mdl-button (click)="onClick()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>I need donor</button>
+<div class="wrapper">
+    <css-carousel></css-carousel>
+</div>
+ <div class="container" *ngIf="!donor">
      <login></login>
  </div>

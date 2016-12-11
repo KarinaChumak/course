@@ -13,6 +13,7 @@ var donor_service_1 = require("./donor.service");
 var DonorListComponent = (function () {
     function DonorListComponent(_donorService) {
         this._donorService = _donorService;
+        this.filterBy = {};
     }
     DonorListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -22,7 +23,8 @@ var DonorListComponent = (function () {
     DonorListComponent = __decorate([
         core_1.Component({
             selector: 'pm-donors',
-            templateUrl: 'app/donors/donor-list.component.html'
+            templateUrl: 'app/donors/donor-list.component.html',
+            styleUrls: ["app/donors/donor-list.component.css"]
         }), 
         __metadata('design:paramtypes', [donor_service_1.DonorService])
     ], DonorListComponent);

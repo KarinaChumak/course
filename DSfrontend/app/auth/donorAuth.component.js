@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var auth_service_1 = require("./auth.service");
+var router_1 = require("@angular/router");
 var DonorAuthComponent = (function () {
-    function DonorAuthComponent(_authService) {
+    function DonorAuthComponent(_authService, _router) {
         this._authService = _authService;
+        this._router = _router;
         this.donor = {};
     }
     DonorAuthComponent.prototype.onClick = function () {
@@ -22,9 +24,10 @@ var DonorAuthComponent = (function () {
     };
     DonorAuthComponent = __decorate([
         core_1.Component({
-            templateUrl: 'app/auth/donorAuth.component.html'
+            templateUrl: 'app/auth/donorAuth.component.html',
+            styles: ["\n  \n    .absolute{position: absolute; left:30px;}\n    .relative{position: absolute; right: 30px;}\n    .mdl-dialog__actions{position: absolute; right: 50px;bottom: 10px}\n"]
         }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
     ], DonorAuthComponent);
     return DonorAuthComponent;
 }());

@@ -9,11 +9,12 @@ import 'rxjs/add/operator/map';
 
 
 import  {IDonor} from './donor';
+import {AuthService} from "../auth/auth.service";
 
 @Injectable()
 export class DonorService{
 
-    constructor(private  _http : Http){
+    constructor(private  _http : Http, private _authService:AuthService){
 
     }
 
@@ -24,30 +25,31 @@ export class DonorService{
             .catch(this.handleError);
     }
 
+   //
+   // getProfile():Observable<IDonor>{
+   //     return this._http.get('api/profile')
+   //         .map((response: Response)=><IDonor>response.json())
+   //         .do(data => console.log( JSON.stringify(data)))
+   //         .catch(this.handleError);
+   //
+   // }
 
-   getProfile():Observable<IDonor>{
-       return this._http.get('api/profile')
-           .map((response: Response)=><IDonor>response.json())
-           .do(data => console.log( JSON.stringify(data)))
-           .catch(this.handleError);
-
-   }
-
-   deleteProfile():Observable<JSON>{
+   deleteProfile():Observable<Response>{
+       this._authService.donor=null;
        return this._http.delete("/api/profile/delete")
         .map((response: Response)=>response.json())
            .do(data => console.log( JSON.stringify(data)))
            .catch(this.handleError);
    }
 
-   addDonation(donation:string):Observable<JSON>{
+   addDonation(donation:string):Observable<Response>{
        return this._http.post("/api/profile/addDonation",{donation:donation})
            .map((response: Response)=>response.json())
            .do(data => console.log( JSON.stringify(data)))
            .catch(this.handleError);
    }
 
-   addAvatar(avatar:string):Observable<JSON>{
+   addAvatar(avatar:string):Observable<Response>{
        return this._http.post("/api/profile/upload_avatar",{avatar:avatar})
            .map((response: Response)=>response.json())
            .do(data => console.log( JSON.stringify(data)))

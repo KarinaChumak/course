@@ -3,5 +3,9 @@ li {
 }
 
 div.panel-heading {
+
    font-size: x-large; 
+}
+.container-fluid{
+    color:red;
 }
