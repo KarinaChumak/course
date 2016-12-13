@@ -1,0 +1,27 @@
+<button *ngIf="admin" mdl-button  mdl-button-type="fab" mdl-colored="accent" mdl-ripple
+        style=" position: relative; top:50px; left:0px;"
+        (click) = "onClick()">
+    <mdl-icon>add</mdl-icon>
+</button>
+
+
+<div *ngIf="(newslist)" style=" position: relative; top:50px; left:50px;">
+    <!--<div class="mdl-grid" align = "center">-->
+        <div class="mdl-cell mdl-cell--12-col "
+             *ngFor="let news of newslist | reverse">
+
+            <mdl-card class="wide-card" mdl-shadow="6"  style=" width:1000px; heigth:300px;" >
+                <mdl-card-title mdl-card-expand>
+                    <h2 mdl-card-title-text>{{news.title}}</h2>
+                </mdl-card-title>
+                <mdl-card-supporting-text>
+                    {{news.content}}
+                </mdl-card-supporting-text>
+                <mdl-card-actions mdl-card-border>
+                    <button mdl-button mdl-colored mdl-ripple>
+                        View Updates
+                    </button>
+                </mdl-card-actions>
+            </mdl-card>
+        <!--</div>-->
+    </div>

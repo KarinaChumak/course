@@ -1,0 +1,23 @@
+<mdl-card mdl-shadow="6" style="width: 400px; height: 400px; margin: 100px;" >
+    <div style="position: absolute; left: 30px;">
+        <h3>New post</h3>
+        <mdl-textfield #firstElement
+                       type = 'text'
+                       label="Title"
+                       [(ngModel)] = "news.title"
+                       floating-label
+                       autofocus></mdl-textfield>
+        <br/>
+        <mdl-textfield  type = 'text'
+                        label="Content"
+                        rows="3" maxrows="3"
+                        [(ngModel)] = "news.content"
+                        floating-label ></mdl-textfield>
+        <br/>
+
+
+        <div class="mdl-dialog__actions">
+            <button mdl-button (click)="addNews()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Post </button>
+        </div>
+    </div>
+</mdl-card>

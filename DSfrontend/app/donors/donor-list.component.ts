@@ -12,10 +12,13 @@ import {IFilter} from "./filter";
 export class DonorListComponent implements  OnInit{
     donors: IDonor[];
     errorMessage: string;
-    filterBy :IFilter ={};
+    cityFilter:string="";
+    groupFilter:number;
+    rhesusFilter:string="";
 
 
     constructor( private _donorService : DonorService){
+
     }
 
     ngOnInit():void{

@@ -139,6 +139,7 @@ exports.update = function(req){
             if(err)
                 reject(err);
             if (donor){
+                console.log(JSON.stringify(req.body));
                 if(req.body.name) donor.name = req.body.name;
                 if(req.body.surname) donor.surname = req.body.surname;
                 if(req.body.patronymic) donor.patronymic = req.body.patronymic;
@@ -158,6 +159,7 @@ exports.update = function(req){
                 donor.save(function(err){
                     if(err)
                         reject(err);
+
                     resolve(status.saved);
                 });}
             else

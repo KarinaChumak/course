@@ -42,35 +42,33 @@
             <mdl-textfield
                     type = "text"
                     label = "City"
-                    [(ngModel)]="filterBy.city"
+                    [(ngModel)]="cityFilter"
                 ></mdl-textfield>
                     <br/>
                 <mdl-textfield
                         type = "text"
                         label = "Group"
-                        [(ngModel)]="filterBy.group"
+                        [(ngModel)]="groupFilter"
                 ></mdl-textfield>
                     <br/>
-                <mdl-textfield
-                        type = "text"
-                        label = "Rhesus"
-                        [(ngModel)]="filterBy.rhesus"
-                ></mdl-textfield>
-                <br/>
-        {{filterBy.city + ' ' + filterBy.group+ ' ' + filterBy.rhesus}}
-
+        <div>
+            <label>Rhesus</label>
+            <mdl-radio  value="positive"  [(ngModel)]="rhesusFilter" mdl-ripple> +</mdl-radio>
+            <mdl-radio  value="negative" [(ngModel)]="rhesusFilter" mdl-ripple> -</mdl-radio>
+                    <br/>
+        </div>
     </mdl-card>
-    <div *ngIf="(donors|donorFilter:filterBy)">
+    <div *ngIf="(donors|cityFilter:cityFilter)">
         <div class="mdl-grid" align = "center">
-        <div class="mdl-cell mdl-cell--6-col " style="position: relative; top:50px; left:200px;" *ngFor='let donor of donors |donorFilter:filterBy '>
+        <div class="mdl-cell mdl-cell--6-col " style="position: relative; top:50px; left:150px;"
+             *ngFor="let donor of donors |cityFilter:cityFilter|groupFilter:groupFilter |rhesusFilter:rhesusFilter">
 
         <mdl-card class="wide-card" mdl-shadow="6" >
             <mdl-card-title mdl-card-expand>
                 <h2 mdl-card-title-text>{{donor.surname+' '+donor.name}}</h2>
             </mdl-card-title>
             <mdl-card-supporting-text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Aenan convallis.
+                {{donor.city+' ' + donor.group + ' ' + donor.rhesus}}
             </mdl-card-supporting-text>
             <mdl-card-actions mdl-card-border>
                 <button mdl-button mdl-colored mdl-ripple>

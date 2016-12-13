@@ -8,7 +8,7 @@ var admin = require('./api/admin');
 var donors = require('./api/donors');
 var profile = require('./api/profile');
 var recipients = require('./api/recipient');
-
+var news = require('./api/news');
 
 
 router.use('/auth',auth);
@@ -16,6 +16,7 @@ router.use('/admin',admin);
 router.use('/donors',donors);
 router.use('/profile',profile);
 router.use('/recipients', recipients);
+router.use('/news', news);
 
 
 module.exports = router;

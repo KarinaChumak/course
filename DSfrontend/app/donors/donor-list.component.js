@@ -13,7 +13,8 @@ var donor_service_1 = require("./donor.service");
 var DonorListComponent = (function () {
     function DonorListComponent(_donorService) {
         this._donorService = _donorService;
-        this.filterBy = {};
+        this.cityFilter = "";
+        this.rhesusFilter = "";
     }
     DonorListComponent.prototype.ngOnInit = function () {
         var _this = this;

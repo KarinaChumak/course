@@ -9,22 +9,60 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var DonorPipe = (function () {
-    function DonorPipe() {
+var CityPipe = (function () {
+    function CityPipe() {
     }
-    DonorPipe.prototype.transform = function (donors, filterBy) {
-        filterBy.city = filterBy.city ? filterBy.city.toLocaleLowerCase() : null;
-        return filterBy.city ? donors.filter(function (donor) {
-            return donor.city.toLocaleLowerCase().indexOf(filterBy.city) !== -1;
+    CityPipe.prototype.transform = function (donors, filterBy) {
+        console.log(filterBy);
+        filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
+        return filterBy ? donors.filter(function (donor) {
+            return donor.city.toLocaleLowerCase().indexOf(filterBy) !== -1;
         }) : donors;
     };
-    DonorPipe = __decorate([
+    CityPipe = __decorate([
         core_1.Pipe({
-            name: 'donorFilter'
+            name: 'cityFilter'
         }), 
         __metadata('design:paramtypes', [])
-    ], DonorPipe);
-    return DonorPipe;
+    ], CityPipe);
+    return CityPipe;
 }());
-exports.DonorPipe = DonorPipe;
+exports.CityPipe = CityPipe;
+var GroupPipe = (function () {
+    function GroupPipe() {
+    }
+    GroupPipe.prototype.transform = function (donors, filterBy) {
+        console.log(filterBy);
+        filterBy = filterBy ? filterBy : null;
+        return filterBy ? donors.filter(function (donor) {
+            return donor.group == filterBy ? true : false;
+        }) : donors;
+    };
+    GroupPipe = __decorate([
+        core_1.Pipe({
+            name: 'groupFilter'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], GroupPipe);
+    return GroupPipe;
+}());
+exports.GroupPipe = GroupPipe;
+var RhesusPipe = (function () {
+    function RhesusPipe() {
+    }
+    RhesusPipe.prototype.transform = function (donors, filterBy) {
+        filterBy = filterBy ? filterBy : null;
+        return filterBy ? donors.filter(function (donor) {
+            return donor.rhesus == filterBy ? true : false;
+        }) : donors;
+    };
+    RhesusPipe = __decorate([
+        core_1.Pipe({
+            name: 'rhesusFilter'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], RhesusPipe);
+    return RhesusPipe;
+}());
+exports.RhesusPipe = RhesusPipe;
 //# sourceMappingURL=donor.pipe.js.map
