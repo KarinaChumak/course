@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {IRecipient} from "./recipient";
 import {RecipientService} from "./recipient.service";
+import {AdminService} from "../admin/admin.service";
 
 
 @Component({
@@ -9,9 +10,15 @@ import {RecipientService} from "./recipient.service";
 export  class  RecipientListComponent{
     recipients: IRecipient[];
     errorMessage: string;
+    cityFilter:string="";
+    groupFilter:number;
+    rhesusFilter:string="";
 
 
-    constructor( private _recipientService : RecipientService){
+
+
+    constructor( private _recipientService : RecipientService,
+            private _adminService: AdminService){
     }
 
     ngOnInit():void{
@@ -20,4 +27,6 @@ export  class  RecipientListComponent{
             .subscribe(recipients => this.recipients = recipients,
                 error => this.errorMessage = <any>error);
     }
+
+
 }

@@ -8,39 +8,43 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var Observable_1 = require('rxjs/Observable');
-require('rxjs/add/operator/do');
-require('rxjs/add/operator/catch');
-require('rxjs/add/operator/map');
-var RecipientService = (function () {
-    function RecipientService(_http) {
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var Observable_1 = require("rxjs/Observable");
+var AdminService = (function () {
+    function AdminService(_http) {
         this._http = _http;
     }
-    RecipientService.prototype.getRecipients = function () {
-        return this._http.get('/api/recipients')
+    AdminService.prototype.getNewRecipients = function () {
+        return this._http.get('/api/admin/new_recipients')
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
-    RecipientService.prototype.addRecipient = function (recipient) {
-        return this._http.post('/api/recipients/create', { recipient: recipient })
+    AdminService.prototype.acceptRecipient = function (recipient) {
+        return this._http.post('/api/admin/accept', recipient)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log(JSON.stringify(data)); })
             .catch(this.handleError);
     };
-    RecipientService.prototype.handleError = function (error) {
+    AdminService.prototype.deleteRecipient = function (recipient) {
+        console.log(recipient);
+        return this._http.delete('/api/admin/delete', recipient)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log(JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    AdminService.prototype.handleError = function (error) {
         // in a real world app, we may send the server to some remote logging infrastructure
         // instead of just logging it to the console
         console.error(error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
-    RecipientService = __decorate([
+    AdminService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], RecipientService);
-    return RecipientService;
+    ], AdminService);
+    return AdminService;
 }());
-exports.RecipientService = RecipientService;
-//# sourceMappingURL=recipient.service.js.map
+exports.AdminService = AdminService;
+//# sourceMappingURL=admin.service.js.map

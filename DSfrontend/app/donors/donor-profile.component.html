@@ -1,5 +1,5 @@
 
-<h1>{{donor.name + ' ' + donor.surname }}</h1>
+<!--<h1>{{donor.name + ' ' + donor.surname }}</h1>-->
 
 <!--<div class ='container' *ngIf="donor.avatar">-->
 <!--<img src='data:image/jpg;base64,{{donor.avatar }}' width=100 height=100 />-->
@@ -23,13 +23,32 @@
     <!--<input type="submit" value="Change info"/>-->
 <!--</form>-->
 
-New donation:
-<br/>
- <input type = 'date' [(ngModel)]="donation"/>
-<br/>
-<button type="submit" class="btn btn-primary btn-lg"  (click)="OnAddDonation()">Add</button>
-<br/>
-<button type="submit" class="btn btn-primary btn-lg"  (click)="OnLogOut()">Log out</button>
-<br/>
-<button type="submit" class="btn btn-primary btn-lg"  (click) = 'OnDeleteProfile()'>Delete profile</button>
+<!--New donation:-->
+<!--<br/>-->
+ <!--<input type = 'date' [(ngModel)]="donation"/>-->
+<!--<br/>-->
+<!--<button type="submit" class="btn btn-primary btn-lg"  (click)="OnAddDonation()">Add</button>-->
+<!--<br/>-->
+<!--<button type="submit" class="btn btn-primary btn-lg"  (click)="OnLogOut()">Log out</button>-->
+<!--<br/>-->
+<!--<button type="submit" class="btn btn-primary btn-lg"  (click) = 'OnDeleteProfile()'>Delete profile</button>-->
 
+<mdl-card class="wide-card" mdl-shadow="6"  style=" width:1000px; heigth:300px;" >
+    <mdl-card-title mdl-card-expand>
+        <h2 mdl-card-title-text>{{donor.surname+ ' ' + donor.name}}</h2>
+    </mdl-card-title>
+    <mdl-card-supporting-text>
+        {{donor.city}}
+    </mdl-card-supporting-text>
+    <mdl-card-actions mdl-card-border>
+        <button mdl-button mdl-colored mdl-ripple (click)="OnLogOut()">
+            Log out
+        </button>
+        <button mdl-button mdl-colored mdl-ripple (click)="OnUpdateProfile()">
+            Update profile
+        </button>
+        <button mdl-button mdl-colored mdl-ripple (click)="OnDeleteProfile()">
+            Delete profile
+        </button>
+    </mdl-card-actions>
+</mdl-card>

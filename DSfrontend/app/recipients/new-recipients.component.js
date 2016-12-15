@@ -11,25 +11,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var recipient_service_1 = require("./recipient.service");
 var admin_service_1 = require("../admin/admin.service");
-var RecipientListComponent = (function () {
-    function RecipientListComponent(_recipientService, _adminService) {
+var NewRecipientsComponent = (function () {
+    function NewRecipientsComponent(_recipientService, _adminService) {
         this._recipientService = _recipientService;
         this._adminService = _adminService;
         this.cityFilter = "";
         this.rhesusFilter = "";
     }
-    RecipientListComponent.prototype.ngOnInit = function () {
+    NewRecipientsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._recipientService.getRecipients()
+        this._adminService.getNewRecipients()
             .subscribe(function (recipients) { return _this.recipients = recipients; }, function (error) { return _this.errorMessage = error; });
     };
-    RecipientListComponent = __decorate([
+    NewRecipientsComponent.prototype.acceptRecipient = function (recipient) {
+        var _this = this;
+        recipient.acceptedColor = "chartreuse";
+        this._adminService.acceptRecipient(recipient)
+            .subscribe(function (status) { return console.log(status); }, function (error) { return _this.errorMessage = error; });
+    };
+    NewRecipientsComponent.prototype.deleteRecipient = function (recipient) {
+        var _this = this;
+        recipient.acceptedColor = "red";
+        this._adminService.deleteRecipient(recipient)
+            .subscribe(function (status) { return console.log(status); }, function (error) { return _this.errorMessage = error; });
+    };
+    NewRecipientsComponent = __decorate([
         core_1.Component({
-            templateUrl: 'app/recipients/recipients-list.component.html'
+            templateUrl: 'app/recipients/new-recipients.component.html'
         }), 
         __metadata('design:paramtypes', [recipient_service_1.RecipientService, admin_service_1.AdminService])
-    ], RecipientListComponent);
-    return RecipientListComponent;
+    ], NewRecipientsComponent);
+    return NewRecipientsComponent;
 }());
-exports.RecipientListComponent = RecipientListComponent;
-//# sourceMappingURL=recipients-list.component.js.map
+exports.NewRecipientsComponent = NewRecipientsComponent;
+//# sourceMappingURL=new-recipients.component.js.map

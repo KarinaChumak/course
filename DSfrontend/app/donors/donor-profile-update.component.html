@@ -1,0 +1,67 @@
+<mdl-card mdl-shadow="6" style="width: 700px; height: 400px; margin: 100px;" >
+
+    <h3 class="mdl-dialog__title">Update profile</h3>
+    <div class="mdl-dialog__content">
+        <div class = "absolute">
+            <mdl-textfield #firstElement
+                           type = 'text'
+                           label="Name"
+
+                           [(ngModel)] = 'donorupdate.name'
+                           floating-label
+                           autofocus></mdl-textfield>
+            <br/>
+            <mdl-textfield  type = 'text'
+                            label="Surname"
+                            [(ngModel)] = 'donorupdate.surname'
+                            floating-label ></mdl-textfield>
+            <br/>
+            <mdl-textfield  type = 'text'
+                            label="Patronymic"
+                            [(ngModel)] = 'donorupdate.patronymic'
+                            floating-label ></mdl-textfield>
+            <br/>
+            <mdl-textfield
+                    type="date"
+                    label="Birthdate"
+                    [(ngModel)]="donorupdate.birthdate"
+                    floating-label></mdl-textfield>
+            <br/>
+        </div>
+        <div class="relative">
+            <mdl-textfield  type = 'text'
+                            label="Email"
+                            [(ngModel)] = 'donorupdate.email'
+                            floating-label
+                            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
+                            error-msg="Incorrect email!">></mdl-textfield>
+            <br/>
+
+            <mdl-textfield
+                    type="password"
+                    label="Password"
+                    [(ngModel)]="donorupdate.password"
+                    floating-label></mdl-textfield>
+            <br/>
+            <mdl-textfield
+                    type="text"
+                    label="City"
+                    [(ngModel)]="donorupdate.city"
+                    floating-label></mdl-textfield>
+            <br/>
+
+            <label>Group</label>
+            <mdl-radio  value="1" [(ngModel)]="donorupdate.group" mdl-ripple> 1</mdl-radio>
+            <mdl-radio  value="2" [(ngModel)]="donorupdate.group" mdl-ripple> 2</mdl-radio>
+            <mdl-radio  value="3" [(ngModel)]="donorupdate.group" mdl-ripple> 3</mdl-radio>
+            <mdl-radio  value="4" [(ngModel)]="donorupdate.group" mdl-ripple> 4</mdl-radio>
+            <br/>
+            <label>Rhesus</label>
+            <mdl-radio  value="positive"  [(ngModel)]="donorupdate.rhesus" mdl-ripple> +</mdl-radio>
+            <mdl-radio  value="negative" [(ngModel)]="donorupdate.rhesus" mdl-ripple> -</mdl-radio>
+        </div>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button mdl-button (click)="onUpdate()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Update</button>
+    </div>
+</mdl-card>

@@ -9,12 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var recipient_service_1 = require("./recipient.service");
 var RecipientAuthComponent = (function () {
-    function RecipientAuthComponent() {
+    function RecipientAuthComponent(_recipientService) {
+        this._recipientService = _recipientService;
+        this.recipient = {};
     }
+    RecipientAuthComponent.prototype.addRecipient = function () {
+        var _this = this;
+        this._recipientService.addRecipient(this.recipient)
+            .subscribe(function (status) { return console.log(status); }, function (error) { return _this.errorMessage = error; });
+    };
     RecipientAuthComponent = __decorate([
-        core_1.Component({}), 
-        __metadata('design:paramtypes', [])
+        core_1.Component({
+            templateUrl: "app/recipients/recipientAuth.component.html"
+        }), 
+        __metadata('design:paramtypes', [recipient_service_1.RecipientService])
     ], RecipientAuthComponent);
     return RecipientAuthComponent;
 }());

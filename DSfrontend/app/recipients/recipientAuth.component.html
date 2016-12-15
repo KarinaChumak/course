@@ -1,1 +1,42 @@
-<h1>helloooo</h1>
+<mdl-card mdl-shadow="6" style="width: 400px; height: 400px; margin: 100px;" >
+   <div style="position: absolute; left: 30px;">
+   <h3>New recipient card</h3>
+    <mdl-textfield #firstElement
+               type = 'text'
+               label="Name"
+               pattern="^[a-z ,.'-]+$"
+               error-msg="Incorrect name"
+               [(ngModel)] = 'recipient.name'
+               floating-label
+               autofocus></mdl-textfield>
+    <br/>
+    <mdl-textfield  type = 'text'
+                    label="Surname"
+                    pattern="^[a-z ,.'-]+$"
+                    error-msg="Incorrect surname"
+                    [(ngModel)] = 'recipient.surname'
+                    floating-label ></mdl-textfield>
+    <br/>
+    <mdl-textfield
+            type="text"
+            label="Diagnose"
+            pattern="^[a-z ,.'-]+$"
+            error-msg="Incorrect diagnose"
+            [(ngModel)]="recipient.city"
+            floating-label></mdl-textfield>
+    <br/>
+    <label>Group</label>
+    <mdl-radio  value="1" [(ngModel)]="recipient.group" mdl-ripple> 1</mdl-radio>
+    <mdl-radio  value="2" [(ngModel)]="recipient.group" mdl-ripple> 2</mdl-radio>
+    <mdl-radio  value="3" [(ngModel)]="recipient.group" mdl-ripple> 3</mdl-radio>
+    <mdl-radio  value="4" [(ngModel)]="recipient.group" mdl-ripple> 4</mdl-radio>
+    <br/>
+    <label>Rhesus</label>
+    <mdl-radio  value="positive" [(ngModel)]="recipient.rhesus" mdl-ripple> +</mdl-radio>
+    <mdl-radio  value="negative" [(ngModel)]="recipient.rhesus" mdl-ripple> -</mdl-radio>
+
+    <div class="mdl-dialog__actions">
+        <button mdl-button (click)="addRecipient()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Add a card</button>
+    </div>
+   </div>
+</mdl-card>

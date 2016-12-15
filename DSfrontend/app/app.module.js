@@ -30,6 +30,15 @@ var admin_component_1 = require("./admin/admin.component");
 var angular2_mdl_1 = require('angular2-mdl');
 var donor_pipe_1 = require('../app/donors/donor.pipe');
 var carousel_component_1 = require("./home/carousel.component");
+var recipientAuth_component_1 = require("./recipients/recipientAuth.component");
+var news_service_1 = require("./news/news.service");
+var add_news_component_1 = require("./news/add-news.component");
+var news_list_component_1 = require("./news/news-list.component");
+var reverse_pipe_1 = require("./news/reverse.pipe");
+var donor_profile_update_component_1 = require("./donors/donor-profile-update.component");
+var new_recipients_component_1 = require("./recipients/new-recipients.component");
+var admin_service_1 = require("./admin/admin.service");
+var new_recipients_pipe_1 = require("./recipients/new-recipients.pipe");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -44,9 +53,14 @@ var AppModule = (function () {
                     { path: 'welcome', component: welcome_component_1.WelcomeComponent },
                     { path: 'donors', component: donor_list_component_1.DonorListComponent },
                     { path: 'auth', component: donorAuth_component_1.DonorAuthComponent },
+                    { path: 'news', component: news_list_component_1.NewsListComponent },
+                    { path: 'addnews', component: add_news_component_1.AddNewsComponent },
                     { path: 'recipients', component: recipients_list_component_1.RecipientListComponent },
                     { path: 'admin', canActivate: [admin_guard_1.AdminGuard], component: admin_component_1.AdminComponent },
+                    { path: 'recipientauth', component: recipientAuth_component_1.RecipientAuthComponent },
+                    { path: 'new_recipients', component: new_recipients_component_1.NewRecipientsComponent },
                     { path: 'donorprofile', canActivate: [authorisation_guard_1.AuthorisationGuard], component: donor_profile_component_1.DonorProfileComponent },
+                    { path: 'updateprofile', component: donor_profile_update_component_1.DonorProfileUpdateComponent },
                     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
                     { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
                 ]),],
@@ -58,9 +72,18 @@ var AppModule = (function () {
                 recipients_list_component_1.RecipientListComponent,
                 logIn_component_1.LoginComponent,
                 admin_component_1.AdminComponent,
+                add_news_component_1.AddNewsComponent,
                 carousel_component_1.CSSCarouselComponent,
-                donor_pipe_1.DonorPipe],
-            providers: [donor_service_1.DonorService, auth_service_1.AuthService, recipient_service_1.RecipientService, authorisation_guard_1.AuthorisationGuard, admin_guard_1.AdminGuard],
+                recipientAuth_component_1.RecipientAuthComponent,
+                donor_profile_update_component_1.DonorProfileUpdateComponent,
+                new_recipients_component_1.NewRecipientsComponent,
+                news_list_component_1.NewsListComponent,
+                new_recipients_pipe_1.NewRecipientsPipe,
+                donor_pipe_1.CityPipe,
+                reverse_pipe_1.ReversePipe,
+                donor_pipe_1.RhesusPipe,
+                donor_pipe_1.GroupPipe],
+            providers: [donor_service_1.DonorService, auth_service_1.AuthService, admin_service_1.AdminService, recipient_service_1.RecipientService, authorisation_guard_1.AuthorisationGuard, admin_guard_1.AdminGuard, news_service_1.NewsService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

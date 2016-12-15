@@ -7,10 +7,10 @@
                 <li><a [routerLink]="['/welcome']">Home</a></li>
                 <li><a [routerLink]="['/donors']">All donors</a></li>
                 <li><a [routerLink] = "['/recipients']">All recipients</a></li>
+                <li><a [routerLink] = "['/news']"> News</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="!donor"><a [routerLink] = "['/auth']">Sign up</a></li>
                 <li  *ngIf="donor"><a [routerLink] = "['/donorprofile']" >{{donor.name + ' '+ donor.surname}}</a></li>
             </ul>
 

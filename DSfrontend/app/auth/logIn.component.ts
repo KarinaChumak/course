@@ -13,7 +13,7 @@ export class LoginComponent{
     errorMessage: string;
 
     constructor( private _authService : AuthService,
-    private _router:Router, ){
+    private _router:Router ){
 
     }
 

@@ -1,0 +1,26 @@
+
+<div>
+    <div class="mdl-grid" align = "center">
+        <div class="mdl-cell mdl-cell--6-col " style="position: relative; top:50px; left:150px;"
+             *ngFor="let recipient of recipients " >
+
+            <mdl-card class="wide-card" mdl-shadow="6" [style.background-color]="recipient.acceptedColor">
+                <mdl-card-title mdl-card-expand>
+                    <h2 mdl-card-title-text>{{recipient.surname+' '+recipient.name}}</h2>
+                </mdl-card-title>
+                <mdl-card-supporting-text>
+                    {{recipient.city+' ' + recipient.group + ' ' + recipient.rhesus}}
+                </mdl-card-supporting-text>
+                <mdl-card-actions mdl-card-border *ngIf="recipient.acceptedColor != 'chartreuse' && recipient.acceptedColor != 'red'">
+                    <button mdl-button mdl-colored mdl-ripple (click)="acceptRecipient(recipient)">
+                        Accept
+                    </button>
+                    <button mdl-button mdl-colored mdl-ripple (click)="deleteRecipient(recipient)">
+                        Delete
+                    </button>
+                </mdl-card-actions>
+            </mdl-card>
+        </div>
+    </div>
+</div>
+

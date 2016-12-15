@@ -3,23 +3,23 @@ import {IDonor} from "./donor";
 import {DonorService} from "./donor.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../auth/auth.service";
+import {LocalStorage} from "ng2-webstorage";
 
 @Component({
     selector: 'donor-profile',
     templateUrl:'./app/donors/donor-profile.component.html'
 })
 
-export class DonorProfileComponent{
-    donor:IDonor = {};
+export class DonorProfileComponent implements OnInit{
+     donor:IDonor;
     errorMessage: string;
     donation:string ='';
     avatar:string= '';
 
     constructor( private _donorService : DonorService,
-    private  _authService: AuthService,
+    private _authService: AuthService,
     private _router: Router){
-
-    }
+        }
 
     ngOnInit():void{
         this.donor = this._authService.donor;
@@ -29,6 +29,10 @@ export class DonorProfileComponent{
         this._donorService.deleteProfile()
             .subscribe(()=>this._router.navigate(['/welcome']),
                 error => this.errorMessage = <any>error);
+    }
+
+    OnUpdateProfile():void{
+        this._router.navigate(['/updateprofile']);
     }
 
     OnLogOut():void{
@@ -43,6 +47,9 @@ export class DonorProfileComponent{
             .subscribe(data=>console.log(data),
                 error => this.errorMessage = <any>error);
     }
+
+
+
     // OnAddAvatar():void{
     //     this._donorService.addAvatar(this.avatar)
     //         .subscribe(data=>console.log(data),

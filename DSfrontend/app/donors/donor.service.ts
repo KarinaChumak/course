@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 
 import  {IDonor} from './donor';
 import {AuthService} from "../auth/auth.service";
+import {LocalStorage} from "ng2-webstorage";
 
 @Injectable()
 export class DonorService{
@@ -25,20 +26,12 @@ export class DonorService{
             .catch(this.handleError);
     }
 
-   //
-   // getProfile():Observable<IDonor>{
-   //     return this._http.get('api/profile')
-   //         .map((response: Response)=><IDonor>response.json())
-   //         .do(data => console.log( JSON.stringify(data)))
-   //         .catch(this.handleError);
-   //
-   // }
-
    deleteProfile():Observable<Response>{
        this._authService.donor=null;
        return this._http.delete("/api/profile/delete")
         .map((response: Response)=>response.json())
-           .do(data => console.log( JSON.stringify(data)))
+           .do(data => console.log( JSON.stringify(data))
+           )
            .catch(this.handleError);
    }
 
@@ -49,7 +42,16 @@ export class DonorService{
            .catch(this.handleError);
    }
 
-   addAvatar(avatar:string):Observable<Response>{
+   updateProfile(donor:IDonor):Observable<Response>{
+       return this._http.post("/api/profile/update", donor)
+           .map((response: Response)=>response.json())
+           .do(data =>{this._authService.donor = donor;
+               console.log(JSON.stringify(data));
+           })
+           .catch(this.handleError);
+   }
+
+      addAvatar(avatar:string):Observable<Response>{
        return this._http.post("/api/profile/upload_avatar",{avatar:avatar})
            .map((response: Response)=>response.json())
            .do(data => console.log( JSON.stringify(data)))

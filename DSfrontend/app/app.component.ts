@@ -32,9 +32,9 @@ import {LocalStorage} from "ng2-webstorage";
     }
   `]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
-      @LocalStorage() donor:IDonor;
+      @LocalStorage() donor:IDonor ;
 
     pageTitle: string = 'Donor search';
 
@@ -42,6 +42,9 @@ export class AppComponent {
 
     }
 
+    ngOnInit() : void {
+        this.donor = this._authService.donor;
+    }
 
 
 

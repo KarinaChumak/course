@@ -1,6 +1,40 @@
-<div class="container" *ngFor="let recipient of recipients" >
+<mdl-card mdl-shadow="6" style="position: fixed; left:10px; top:80px; width: 250px;height: 500px;">
+    <mdl-textfield
+            type = "text"
+            label = "City"
+            [(ngModel)]="cityFilter"
+    ></mdl-textfield>
+    <br/>
+    <mdl-textfield
+            type = "text"
+            label = "Group"
+            [(ngModel)]="groupFilter"
+    ></mdl-textfield>
+    <br/>
     <div>
-       {{recipient.name +' '+ recipient.surname}}
+        <label>Rhesus</label>
+        <mdl-radio  value="positive"  [(ngModel)]="rhesusFilter" mdl-ripple> +</mdl-radio>
+        <mdl-radio  value="negative" [(ngModel)]="rhesusFilter" mdl-ripple> -</mdl-radio>
+        <br/>
+    </div>
+</mdl-card>
+<div *ngIf="(recipients|cityFilter:cityFilter)">
+    <div class="mdl-grid" align = "center">
+        <div class="mdl-cell mdl-cell--6-col " style="position: relative; top:50px; left:150px;"
+             *ngFor="let recipient of recipients |cityFilter:cityFilter|groupFilter:groupFilter |rhesusFilter:rhesusFilter">
 
+            <mdl-card class="wide-card" mdl-shadow="6" >
+                <mdl-card-title mdl-card-expand>
+                    <h2 mdl-card-title-text>{{recipient.surname+' '+recipient.name}}</h2>
+                </mdl-card-title>
+                <mdl-card-supporting-text>
+                    {{recipient.city+' ' + recipient.group + ' ' + recipient.rhesus}}
+                </mdl-card-supporting-text>
+                <mdl-card-actions mdl-card-border>
+
+                </mdl-card-actions>
+            </mdl-card>
+        </div>
     </div>
 </div>
+

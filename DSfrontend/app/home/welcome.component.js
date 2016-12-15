@@ -21,14 +21,21 @@ var WelcomeComponent = (function () {
     WelcomeComponent.prototype.onClick = function () {
         this._router.navigate(['/recipientauth']);
     };
+    WelcomeComponent.prototype.onClickDonor = function () {
+        this._router.navigate(['/auth']);
+    };
     __decorate([
         ng2_webstorage_1.LocalStorage(), 
         __metadata('design:type', Object)
     ], WelcomeComponent.prototype, "donor", void 0);
+    __decorate([
+        ng2_webstorage_1.LocalStorage(), 
+        __metadata('design:type', Object)
+    ], WelcomeComponent.prototype, "admin", void 0);
     WelcomeComponent = __decorate([
         core_1.Component({
             templateUrl: 'app/home/welcome.component.html',
-            styles: ["\n    .h3{\n        position: absolute;\n        top:50px;\n        left:50px;\n    }\n   .wrapper{\n      width: 60%;\n      margin: 60px auto;\n    }\n  "]
+            styles: ["\n    .buttons{\n        position: absolute;\n        top:500px;\n        left: 20px;\n    }\n    .h3{\n        position: absolute;\n        top:50px;\n        left:50px;\n    }\n   .wrapper{\n      width: 60%;\n      margin: 60px auto;\n    }\n  "]
         }), 
         __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
     ], WelcomeComponent);

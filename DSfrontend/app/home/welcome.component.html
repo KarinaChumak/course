@@ -1,7 +1,15 @@
-﻿<button mdl-button (click)="onClick()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>I need donor</button>
+﻿
 <div class="wrapper">
     <css-carousel></css-carousel>
 </div>
- <div class="container" *ngIf="!donor">
+ <div class="container" *ngIf="!donor && !admin">
      <login></login>
+ </div>
+
+<div class = "buttons" *ngIf="!donor && !admin">
+
+    <button mdl-button (click)="onClick()"
+            mdl-button-type="raised" mdl-colored="primary" mdl-ripple>I need donor</button>
+    <button mdl-button (click)="onClickDonor()"
+            mdl-button-type="raised" mdl-colored="primary" mdl-ripple>I want to become donor</button>
  </div>

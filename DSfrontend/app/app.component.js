@@ -16,6 +16,9 @@ var AppComponent = (function () {
         this._authService = _authService;
         this.pageTitle = 'Donor search';
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.donor = this._authService.donor;
+    };
     __decorate([
         ng2_webstorage_1.LocalStorage(), 
         __metadata('design:type', Object)

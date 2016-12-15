@@ -17,7 +17,6 @@ var DonorProfileComponent = (function () {
         this._donorService = _donorService;
         this._authService = _authService;
         this._router = _router;
-        this.donor = {};
         this.donation = '';
         this.avatar = '';
     }
@@ -28,6 +27,9 @@ var DonorProfileComponent = (function () {
         var _this = this;
         this._donorService.deleteProfile()
             .subscribe(function () { return _this._router.navigate(['/welcome']); }, function (error) { return _this.errorMessage = error; });
+    };
+    DonorProfileComponent.prototype.OnUpdateProfile = function () {
+        this._router.navigate(['/updateprofile']);
     };
     DonorProfileComponent.prototype.OnLogOut = function () {
         var _this = this;
