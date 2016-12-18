@@ -10,25 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var donor_service_1 = require("./donor.service");
-var DonorListComponent = (function () {
-    function DonorListComponent(_donorService) {
+var DonorRatingComponent = (function () {
+    function DonorRatingComponent(_donorService) {
         this._donorService = _donorService;
-        this.cityFilter = "";
-        this.rhesusFilter = "";
     }
-    DonorListComponent.prototype.ngOnInit = function () {
+    DonorRatingComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._donorService.getDonors()
             .subscribe(function (donors) { return _this.donors = donors; }, function (error) { return _this.errorMessage = error; });
     };
-    DonorListComponent = __decorate([
+    DonorRatingComponent = __decorate([
         core_1.Component({
             selector: 'pm-donors',
-            templateUrl: 'app/donors/donor-list.component.html'
+            templateUrl: 'app/donors/donor-rating.component.html'
         }), 
         __metadata('design:paramtypes', [donor_service_1.DonorService])
-    ], DonorListComponent);
-    return DonorListComponent;
+    ], DonorRatingComponent);
+    return DonorRatingComponent;
 }());
-exports.DonorListComponent = DonorListComponent;
-//# sourceMappingURL=donor-list.component.js.map
+exports.DonorRatingComponent = DonorRatingComponent;
+//# sourceMappingURL=donor-rating.component.js.map

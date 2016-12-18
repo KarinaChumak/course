@@ -8,10 +8,16 @@
                 <li><a [routerLink]="['/donors']">All donors</a></li>
                 <li><a [routerLink] = "['/recipients']">All recipients</a></li>
                 <li><a [routerLink] = "['/news']"> News</a></li>
+                <li><a [routerLink] = "['/info']"> Info</a></li>
+                <li *ngIf = "admin"><a [routerLink] = "['/new_recipients']"> New recipients</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li  *ngIf="donor"><a [routerLink] = "['/donorprofile']" >{{donor.name + ' '+ donor.surname}}</a></li>
+                <li *ngIf="admin">Hi, admin</li>
+                <li *ngIf="donor || admin"> <button mdl-button   style="margin: 8px; color: white;" (click)="OnLogOut()">
+                    Log out
+                </button></li>
             </ul>
 
         </div>

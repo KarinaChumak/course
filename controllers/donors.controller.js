@@ -6,10 +6,7 @@ var status = require('../config/status');
 
 exports.create = function (req,res) {
   return new Promise(function(resolve, reject){
-      // Donor.findOne({'email' : email}, '-__v', function(err, donor){
-      //     if(err) reject(err);
-      //     if(donor) reject(status.user_exists);
-      // });
+
 
       var donor = new Donor({
           name : req.body.name,
@@ -19,7 +16,6 @@ exports.create = function (req,res) {
           email : req.body.email,
           password: hash.sha512(req.body.password).passwordHash,
           city: req.body.city,
-          available: isAvailable(req),
           group: req.body.group,
           rhesus: req.body.rhesus
 
@@ -34,17 +30,11 @@ exports.create = function (req,res) {
 };
 
 
-//todo renew
-function isAvailable(req){
-    if((Date.now() - new Date(req.body.lastDonation).getTime()) >= TWO_MONTH)
-     return true;
-   else return false;
-};
 
 
 exports.getAll = function (params) {
     return new Promise(function (resolve,reject){
-        Donor.find(params, '-__id -__v -avatar', function(err, donors){
+        Donor.find(params,  function(err, donors){
             if(err) reject(err);
            resolve(donors);
 
@@ -53,14 +43,14 @@ exports.getAll = function (params) {
 };
 
 
-exports.changeAvatar = function(req,base64String ){
+exports.changeAvatar = function(req ){
     return new Promise (function (resolve, reject){
 
-        Donor.findOne({email: req.user.email},function(err,donor){
+        Donor.findOne({'_id' : req.body.id},function(err,donor){
             if(err)
                 reject(err);
             if(donor){
-                donor.avatar = base64String;
+                donor.avatar = req.body.avatar;
                 donor.save(function(err){
                     if(err)
                         reject(err);
@@ -76,7 +66,7 @@ exports.changeAvatar = function(req,base64String ){
 
 exports.getByEmail = function(email){
  return new Promise( function (resolve, reject){
-     Donor.findOne({'email' : email}, '-__v', function(err, donor){
+     Donor.findOne({'email' : email},  function(err, donor){
          if(err)
              reject(err);
          if(donor)
@@ -89,7 +79,7 @@ exports.getByEmail = function(email){
 
 exports.getById = function(id){
   return new Promise(function (resolve,reject){
-      Donor.findOne({'_id' : id},' ',function(err, donor){
+      Donor.findOne({'_id' : id},function(err, donor){
           if(err)
               reject(err);
           if(donor)
@@ -103,7 +93,7 @@ exports.getById = function(id){
 
 exports.addDonation = function (req) {
     return new Promise (function(resolve,reject){
-        Donor.findOne({'_id' : req.user._id},' ',function(err, donor){
+        Donor.findOne({'_id' : req.body.id},function(err, donor){
             if(err)
                 reject(err);
             if (donor){
@@ -135,7 +125,7 @@ exports.delete = function(req){
 //todo check if email exists
 exports.update = function(req){
     return new Promise(function (resolve,reject){
-        Donor.findOne({'_id' : req.user._id},' ',function(err, donor){
+        Donor.findOne({'_id' : req.user._id},function(err, donor){
             if(err)
                 reject(err);
             if (donor){

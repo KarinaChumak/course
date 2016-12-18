@@ -35,8 +35,9 @@ export class DonorService{
            .catch(this.handleError);
    }
 
-   addDonation(donation:string):Observable<Response>{
-       return this._http.post("/api/profile/addDonation",{donation:donation})
+   //todo
+   addDonation(object : Object):Observable<Response>{
+       return this._http.post("/api/profile/addDonation",object)
            .map((response: Response)=>response.json())
            .do(data => console.log( JSON.stringify(data)))
            .catch(this.handleError);
@@ -51,8 +52,9 @@ export class DonorService{
            .catch(this.handleError);
    }
 
-      addAvatar(avatar:string):Observable<Response>{
-       return this._http.post("/api/profile/upload_avatar",{avatar:avatar})
+      addAvatar(object : Object):Observable<Response>{
+
+       return this._http.post("/api/profile/upload_avatar",object)
            .map((response: Response)=>response.json())
            .do(data => console.log( JSON.stringify(data)))
            .catch(this.handleError);

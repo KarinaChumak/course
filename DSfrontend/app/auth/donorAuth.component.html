@@ -6,23 +6,17 @@
         <mdl-textfield #firstElement
                        type = 'text'
                        label="Name"
-                       pattern="^[a-z ,.'-]+$"
-                       error-msg="Incorrect name"
                        [(ngModel)] = 'donor.name'
                        floating-label
                        autofocus></mdl-textfield>
         <br/>
         <mdl-textfield  type = 'text'
                         label="Surname"
-                        pattern="^[a-z ,.'-]+$"
-                        error-msg="Incorrect surname"
                         [(ngModel)] = 'donor.surname'
                         floating-label ></mdl-textfield>
         <br/>
         <mdl-textfield  type = 'text'
                         label="Patronymic"
-                        pattern="^[a-z ,.'-]+$"
-                        error-msg="Incorrect patronymic"
                         [(ngModel)] = 'donor.patronymic'
                         floating-label ></mdl-textfield>
         <br/>

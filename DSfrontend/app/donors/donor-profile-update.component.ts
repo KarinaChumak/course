@@ -13,6 +13,8 @@ import {LocalStorage} from "ng2-webstorage";
     .absolute{position: absolute; left:30px;}
     .relative{position: absolute; right: 30px;}
     .mdl-dialog__actions{position: absolute; right: 50px;bottom: 10px}
+  
+
 `]
 
 })
@@ -29,6 +31,7 @@ export class DonorProfileUpdateComponent implements OnInit{
     }
 
     onUpdate():void{
+        console.log(this.donorupdate);
         this._donorService.updateProfile(this.donorupdate)
             .subscribe(()=>this._router.navigate(['/donorprofile']),
                 error => this.errorMessage = <any>error);

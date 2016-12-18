@@ -20,7 +20,7 @@ exports.added_avatar = {
 
 exports.deleted={
     status:"success",
-    message:"Recipient deleted"
+    message:"Deleted"
 };
 
 exports.accepted = {

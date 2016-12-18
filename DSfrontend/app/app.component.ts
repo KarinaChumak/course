@@ -2,6 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import {IDonor} from "./donors/donor";
 import {AuthService} from "./auth/auth.service";
 import {LocalStorage} from "ng2-webstorage";
+import {IAdmin} from "./admin/admin";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -35,15 +37,26 @@ import {LocalStorage} from "ng2-webstorage";
 export class AppComponent implements OnInit{
 
       @LocalStorage() donor:IDonor ;
+    @LocalStorage() admin:IAdmin;
+
+    errorMessage: string;
 
     pageTitle: string = 'Donor search';
 
-    constructor(private _authService : AuthService){
+    constructor(private _authService : AuthService,
+    private _router: Router){
 
     }
 
     ngOnInit() : void {
         this.donor = this._authService.donor;
+        this.admin = this._authService.admin;
+    }
+
+    OnLogOut():void{
+        this._authService.logOut()
+            .subscribe(()=>this._router.navigate(['/welcome']),
+                error => this.errorMessage = <any>error);
     }
 
 

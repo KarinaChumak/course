@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
+import {Http, Response, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {IRecipient} from "../recipients/recipient";
 
@@ -28,8 +28,8 @@ export class  AdminService{
     }
 
     deleteRecipient(recipient:IRecipient): Observable<Response>{
-        console.log(recipient);
-        return this._http.delete('/api/admin/delete', recipient)
+
+        return this._http.delete('/api/admin/delete', new RequestOptions({body:recipient}))
             .map((response: Response)=>response.json())
             .do(data => console.log( JSON.stringify(data)))
             .catch(this.handleError);

@@ -29,20 +29,7 @@
             <br/>
         </div>
         <div class="relative">
-            <mdl-textfield  type = 'text'
-                            label="Email"
-                            [(ngModel)] = 'donorupdate.email'
-                            floating-label
-                            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
-                            error-msg="Incorrect email!">></mdl-textfield>
-            <br/>
 
-            <mdl-textfield
-                    type="password"
-                    label="Password"
-                    [(ngModel)]="donorupdate.password"
-                    floating-label></mdl-textfield>
-            <br/>
             <mdl-textfield
                     type="text"
                     label="City"
@@ -51,14 +38,20 @@
             <br/>
 
             <label>Group</label>
+
+            <md-radio-group>
             <mdl-radio  value="1" [(ngModel)]="donorupdate.group" mdl-ripple> 1</mdl-radio>
             <mdl-radio  value="2" [(ngModel)]="donorupdate.group" mdl-ripple> 2</mdl-radio>
             <mdl-radio  value="3" [(ngModel)]="donorupdate.group" mdl-ripple> 3</mdl-radio>
             <mdl-radio  value="4" [(ngModel)]="donorupdate.group" mdl-ripple> 4</mdl-radio>
+            </md-radio-group>
             <br/>
+            <md-radio-group>
             <label>Rhesus</label>
             <mdl-radio  value="positive"  [(ngModel)]="donorupdate.rhesus" mdl-ripple> +</mdl-radio>
             <mdl-radio  value="negative" [(ngModel)]="donorupdate.rhesus" mdl-ripple> -</mdl-radio>
+                </md-radio-group>
+
         </div>
     </div>
     <div class="mdl-dialog__actions">

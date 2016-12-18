@@ -5,15 +5,13 @@ import {IFilter} from "./filter";
 
 @Component({
     selector: 'pm-donors',
-    templateUrl:'app/donors/donor-list.component.html'
+    templateUrl:'app/donors/donor-rating.component.html'
 
 })
-export class DonorListComponent implements  OnInit{
+export class DonorRatingComponent implements  OnInit{
     donors: IDonor[];
     errorMessage: string;
-    cityFilter:string="";
-    groupFilter:number;
-    rhesusFilter:string="";
+
 
 
     constructor( private _donorService : DonorService){
@@ -21,8 +19,8 @@ export class DonorListComponent implements  OnInit{
     }
 
     ngOnInit():void{
-       this._donorService.getDonors()
-           .subscribe(donors => this.donors = donors,
-               error => this.errorMessage = <any>error);
+        this._donorService.getDonors()
+            .subscribe(donors => this.donors = donors,
+                error => this.errorMessage = <any>error);
     }
 }

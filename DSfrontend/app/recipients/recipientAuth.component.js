@@ -14,7 +14,16 @@ var RecipientAuthComponent = (function () {
     function RecipientAuthComponent(_recipientService) {
         this._recipientService = _recipientService;
         this.recipient = {};
+        this.resizeOptions = {
+            resizeMaxHeight: 300,
+            resizeMaxWidth: 300
+        };
     }
+    RecipientAuthComponent.prototype.selected = function (imageResult) {
+        this.recipient.avatar = imageResult.resized
+            && imageResult.resized.dataURL
+            || imageResult.dataURL;
+    };
     RecipientAuthComponent.prototype.addRecipient = function () {
         var _this = this;
         this._recipientService.addRecipient(this.recipient)
@@ -22,7 +31,8 @@ var RecipientAuthComponent = (function () {
     };
     RecipientAuthComponent = __decorate([
         core_1.Component({
-            templateUrl: "app/recipients/recipientAuth.component.html"
+            templateUrl: "app/recipients/recipientAuth.component.html",
+            styles: ["\n          .mdl-button--file input { \n        cursor: pointer; \n        height: 100%; \n        right: 0; \n        opacity: 0; \n        position: absolute; \n        top: 0; \n        width: 300px; \n        z-index: 4; \n    } \n    .mdl-textfield--file .mdl-textfield__input { \n        box-sizing: border-box; \n        width: calc(100% - 32px); \n    } \n    .mdl-textfield--file .mdl-button--file { \n        right: 0; }\n"]
         }), 
         __metadata('design:paramtypes', [recipient_service_1.RecipientService])
     ], RecipientAuthComponent);

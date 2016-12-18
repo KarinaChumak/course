@@ -3,6 +3,7 @@ var News = require ('../models/news.model.js');
 var status = require('../config/status');
 
 exports.create = function (req,res) {
+
     return new Promise(function (resolve,reject) {
         var news = new News({
             title: req.body.title,
@@ -14,6 +15,17 @@ exports.create = function (req,res) {
         news.save(function (err, result) {
             if (result)  resolve(status.saved);
             reject(err);
+        });
+
+    });
+};
+
+exports.delete = function (id) {
+    return new Promise(function(resolve, reject){
+        News.remove({_id:id},function (err,result) {
+            if(err) reject(err);
+            if (result) resolve(status.deleted);
+            else reject(status.recipient_not_found);
         });
 
     });

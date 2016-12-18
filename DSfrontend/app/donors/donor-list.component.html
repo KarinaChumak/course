@@ -1,44 +1,7 @@
 
-<!--<div class='panel panel-primary'>-->
-    <!--<div class='panel-heading'>-->
-        <!--{{pageTitle}}-->
-    <!--</div>-->
-
-    <!--<div class='panel-body'>-->
-
-        <!--<div class='table-responsive'>-->
-            <!--<table class='table'>-->
-                <!--<thead>-->
-                <!--<tr>-->
-
-                    <!--<th>Имя</th>-->
-                    <!--<th>Фамилия</th>-->
-                    <!--<th>Отчество</th>-->
-                    <!--<th>Дата рождения</th>-->
-                    <!--<th>Кроводачи</th>-->
-                <!--</tr>-->
-                <!--</thead>-->
-                <!--<tbody>-->
-                <!--<tr *ngFor='let donor of donors '>-->
-
-                    <!--<td>{{donor.name}} </td>-->
-                    <!--<td>{{donor.surname }}</td>-->
-                    <!--<td>{{donor.patronymic}}</td>-->
-                    <!--<td>{{donor.birthdate}}</td>-->
-                    <!--<td>-->
-                        <!--<div  *ngFor="let donation of donor.donations">{{donation}}</div>-->
-
-                    <!--</td>-->
-
-                <!--</tr>-->
-                <!--</tbody>-->
-            <!--</table>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-
 
     <mdl-card mdl-shadow="6" style="position: fixed; left:10px; top:80px; width: 250px;height: 500px;">
+           <div style="margin: 10px;">
             <mdl-textfield
                     type = "text"
                     label = "City"
@@ -57,6 +20,7 @@
             <mdl-radio  value="negative" [(ngModel)]="rhesusFilter" mdl-ripple> -</mdl-radio>
                     <br/>
         </div>
+               </div>
     </mdl-card>
     <div *ngIf="(donors|cityFilter:cityFilter)">
         <div class="mdl-grid" align = "center">
@@ -67,14 +31,20 @@
             <mdl-card-title mdl-card-expand>
                 <h2 mdl-card-title-text>{{donor.surname+' '+donor.name}}</h2>
             </mdl-card-title>
+            <mdl-card-media *ngIf= "donor.avatar" style="background-color: white">
+                <img [src]="donor.avatar" style = "width:150; height;150;">
+
+            </mdl-card-media>
+
             <mdl-card-supporting-text>
-                {{donor.city+' ' + donor.group + ' ' + donor.rhesus}}
+
+                City:{{donor.city}}
+                <br/>
+                {{donor.group + ' ' + donor.rhesus}}
+                <br/>
+                Contact info:{{donor.email}}
             </mdl-card-supporting-text>
-            <mdl-card-actions mdl-card-border>
-                <button mdl-button mdl-colored mdl-ripple>
-                    View Updates
-                </button>
-            </mdl-card-actions>
+
         </mdl-card>
         </div>
     </div>

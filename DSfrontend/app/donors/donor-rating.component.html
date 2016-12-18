@@ -1,0 +1,29 @@
+
+<div *ngIf="(donors|cityFilter:cityFilter)">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col " style="position: relative; top:50px; left:150px;"
+             *ngFor="let donor of donors |ratingFilter">
+
+            <mdl-card class="wide-card" mdl-shadow="6" style=" width:500px; heigth:100px;" >
+                <mdl-card-title mdl-card-expand>
+                    <h2 mdl-card-title-text>{{donor.surname+' '+donor.name }}</h2>
+                </mdl-card-title>
+                <mdl-card-media *ngIf= "donor.avatar" style="background-color: white">
+                    <img [src]="donor.avatar" style = "margin:20px; width:150; height;150;">
+
+                </mdl-card-media>
+                <mdl-card-supporting-text>
+                    {{donor.city+' ' + donor.group + ' ' + donor.rhesus}}
+                    {{'Donations: ' + donor.donations.length}}
+                </mdl-card-supporting-text>
+                <mdl-card-actions mdl-card-border>
+                    <button mdl-button mdl-colored mdl-ripple>
+                        View Updates
+                    </button>
+                </mdl-card-actions>
+            </mdl-card>
+        </div>
+    </div>
+</div>
+
+

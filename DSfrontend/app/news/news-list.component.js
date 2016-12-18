@@ -20,6 +20,11 @@ var NewsListComponent = (function () {
     NewsListComponent.prototype.onClick = function () {
         this._router.navigate(['/addnews']);
     };
+    NewsListComponent.prototype.deleteNews = function (news) {
+        var _this = this;
+        this._newsService.deleteNews(news)
+            .subscribe(function (data) { return console.log(data); }, function (error) { return _this.errorMessage = error; });
+    };
     NewsListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._newsService.getNews()

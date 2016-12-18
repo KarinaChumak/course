@@ -1,4 +1,5 @@
 <mdl-card mdl-shadow="6" style="position: fixed; left:10px; top:80px; width: 250px;height: 500px;">
+    <div style="margin: 10px;">
     <mdl-textfield
             type = "text"
             label = "City"
@@ -17,6 +18,7 @@
         <mdl-radio  value="negative" [(ngModel)]="rhesusFilter" mdl-ripple> -</mdl-radio>
         <br/>
     </div>
+        </div>
 </mdl-card>
 <div *ngIf="(recipients|cityFilter:cityFilter)">
     <div class="mdl-grid" align = "center">
@@ -30,6 +32,10 @@
                 <mdl-card-supporting-text>
                     {{recipient.city+' ' + recipient.group + ' ' + recipient.rhesus}}
                 </mdl-card-supporting-text>
+                <mdl-card-media *ngIf= "recipient.avatar" style="background-color: white">
+                    <img [src]="recipient.avatar" style = "width:150; height;150;">
+
+                </mdl-card-media>
                 <mdl-card-actions mdl-card-border>
 
                 </mdl-card-actions>

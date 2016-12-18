@@ -48,3 +48,23 @@ export class RhesusPipe implements PipeTransform {
     }
 
 }
+
+@Pipe({
+    name : 'ratingFilter'
+})
+
+export class RatingPipe implements PipeTransform {
+
+    transform(donors : IDonor[]) : IDonor[]{
+        return donors.sort((n1,n2)=>{
+            if (n1.donations.length < n2.donations.length) {
+                return 1;
+            }
+            if (n1.donations.length > n2.donations.length) {
+                return -1;
+            }
+            else return 0;
+        });
+    }
+
+}

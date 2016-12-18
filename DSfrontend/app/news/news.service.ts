@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {INews} from "./news";
-import {Http, Response} from "@angular/http";
+import {Http, Response, RequestOptions} from "@angular/http";
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -27,6 +27,15 @@ export class NewsService{
             .catch(this.handleError);
 
     }
+
+    deleteNews(news:INews):Observable<Response>{
+
+        return this._http.delete('/api/news/delete', new RequestOptions({body:news}))
+            .map((response: Response)=>response.json())
+            .do(data => console.log( JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
 
     private handleError(error: Response) {
         // in a real world app, we may send the server to some remote logging infrastructure

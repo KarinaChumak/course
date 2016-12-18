@@ -11,11 +11,19 @@
                 <mdl-card-supporting-text>
                     {{recipient.city+' ' + recipient.group + ' ' + recipient.rhesus}}
                 </mdl-card-supporting-text>
-                <mdl-card-actions mdl-card-border *ngIf="recipient.acceptedColor != 'chartreuse' && recipient.acceptedColor != 'red'">
-                    <button mdl-button mdl-colored mdl-ripple (click)="acceptRecipient(recipient)">
+                <mdl-card-media *ngIf= "recipient.avatar" style="background-color: white">
+                    <img [src]="recipient.avatar" style = "width:150; height;150;">
+
+                </mdl-card-media>
+                <mdl-card-actions mdl-card-border >
+                    <button mdl-button mdl-colored
+                            *ngIf="recipient.acceptedColor != 'palegreen' && recipient.acceptedColor != 'coral'"
+                            mdl-ripple (click)="acceptRecipient(recipient)">
                         Accept
                     </button>
-                    <button mdl-button mdl-colored mdl-ripple (click)="deleteRecipient(recipient)">
+                    <button mdl-button
+                            *ngIf="recipient.acceptedColor != 'palegreen' && recipient.acceptedColor != 'coral'"
+                            mdl-colored mdl-ripple (click)="deleteRecipient(recipient)">
                         Delete
                     </button>
                 </mdl-card-actions>

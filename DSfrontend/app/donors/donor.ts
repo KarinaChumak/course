@@ -6,9 +6,7 @@ export interface IDonor extends ISearchable{
     surname: string;
     patronymic : string;
     birthdate: string;
-   // city: string;
-    available: boolean;
-    //group: number;
-    //rhesus: string;
+    email:string;
     donations: Array<string>;
+    avatar:string;
 }

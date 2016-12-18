@@ -28,8 +28,7 @@ var AdminService = (function () {
             .catch(this.handleError);
     };
     AdminService.prototype.deleteRecipient = function (recipient) {
-        console.log(recipient);
-        return this._http.delete('/api/admin/delete', recipient)
+        return this._http.delete('/api/admin/delete', new http_1.RequestOptions({ body: recipient }))
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log(JSON.stringify(data)); })
             .catch(this.handleError);

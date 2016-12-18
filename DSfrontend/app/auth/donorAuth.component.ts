@@ -27,7 +27,7 @@ export class DonorAuthComponent{
     onClick():void{
 
         this._authService.signUp(this.donor)
-            .subscribe(status => console.log(status),
+            .subscribe(()=>this._router.navigate(['/donorprofile']),
                 error => this.errorMessage = <any>error);
 
     }

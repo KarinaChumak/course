@@ -19,7 +19,11 @@
                 </mdl-card-supporting-text>
                 <mdl-card-actions mdl-card-border>
                     <button mdl-button mdl-colored mdl-ripple>
-                        View Updates
+                        View
+                    </button>
+                    <button *ngIf = "admin" mdl-button mdl-colored
+                            mdl-ripple (click)="deleteNews(news)">
+                        Delete this post
                     </button>
                 </mdl-card-actions>
             </mdl-card>

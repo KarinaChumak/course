@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {DonorListComponent} from '../app/donors/donor-list.component'
 import  {HttpModule} from '@angular/http'
@@ -16,9 +16,8 @@ import {DonorService} from '../app/donors/donor.service'
 import {AuthService} from "./auth/auth.service";
 import {RecipientService} from "./recipients/recipient.service";
 import {Ng2Webstorage} from 'ng2-webstorage';
-import {AdminComponent} from "./admin/admin.component";
 import {MdlModule} from 'angular2-mdl';
-import {CityPipe, GroupPipe,RhesusPipe } from '../app/donors/donor.pipe'
+import {CityPipe, GroupPipe, RhesusPipe, RatingPipe} from '../app/donors/donor.pipe'
 import {CSSCarouselComponent} from "./home/carousel.component";
 import {RecipientAuthComponent} from "./recipients/recipientAuth.component";
 import {NewsService} from "./news/news.service";
@@ -29,23 +28,30 @@ import {DonorProfileUpdateComponent} from "./donors/donor-profile-update.compone
 import {NewRecipientsComponent} from "./recipients/new-recipients.component";
 import {AdminService} from "./admin/admin.service";
 import {NewRecipientsPipe} from "./recipients/new-recipients.pipe";
+import {DonorRatingComponent} from "./donors/donor-rating.component";
+import {InfoComponent} from "./info/info.component";
+import { ImageUploadModule } from 'ng2-imageupload';
+import {DatePickerComponent} from "./assets/date-picker.component";
+import {PolymerElement} from "@vaadin/angular2-polymer";
 
 @NgModule({
   imports: [ BrowserModule,
             FormsModule,
              HttpModule,
-            MdlModule,
+             MdlModule,
              Ng2Webstorage,
-            RouterModule.forRoot([
+             ImageUploadModule,
+             RouterModule.forRoot([
                 { path: 'welcome', component: WelcomeComponent },
                 { path: 'donors', component: DonorListComponent},
                 { path :'auth', component: DonorAuthComponent},
                 {path: 'news', component: NewsListComponent},
                 {path:'addnews', component: AddNewsComponent},
                 { path: 'recipients', component: RecipientListComponent},
-                {path: 'admin', canActivate:[AdminGuard], component:AdminComponent},
                 {path:'recipientauth', component: RecipientAuthComponent},
-                {path: 'new_recipients', component: NewRecipientsComponent},
+                {path:'rating', component:DonorRatingComponent},
+                {path:'info', component:InfoComponent},
+                {path: 'new_recipients', canActivate:[AdminGuard], component: NewRecipientsComponent},
                 {path:'donorprofile', canActivate:[AuthorisationGuard], component:DonorProfileComponent},
                 {path: 'updateprofile', component:DonorProfileUpdateComponent},
                 { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -55,22 +61,28 @@ import {NewRecipientsPipe} from "./recipients/new-recipients.pipe";
           DonorListComponent,
           DonorProfileComponent,
           WelcomeComponent,
+          DatePickerComponent,
           DonorAuthComponent,
           RecipientListComponent,
           LoginComponent,
-          AdminComponent,
           AddNewsComponent,
           CSSCarouselComponent,
           RecipientAuthComponent,
+          InfoComponent,
           DonorProfileUpdateComponent,
+          DonorRatingComponent,
           NewRecipientsComponent,
           NewsListComponent,
           NewRecipientsPipe,
           CityPipe,
           ReversePipe,
+          RatingPipe,
           RhesusPipe,
+          PolymerElement('vaadin-date-picker'),
           GroupPipe],
     providers : [DonorService, AuthService,AdminService, RecipientService, AuthorisationGuard,AdminGuard,NewsService ],
-    bootstrap: [ AppComponent ]
+    bootstrap: [ AppComponent ],
+
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

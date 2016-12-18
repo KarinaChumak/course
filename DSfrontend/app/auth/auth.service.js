@@ -32,10 +32,12 @@ var AuthService = (function () {
             .do(function (data) {
             if (data.role) {
                 _this.admin = data;
+                _this.admin.password = null;
                 console.log(_this.admin);
             }
             else {
                 _this.donor = data;
+                _this.donor.password = null;
                 console.log(_this.donor);
             }
         })

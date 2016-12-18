@@ -20,7 +20,7 @@ var DonorAuthComponent = (function () {
     DonorAuthComponent.prototype.onClick = function () {
         var _this = this;
         this._authService.signUp(this.donor)
-            .subscribe(function (status) { return console.log(status); }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function () { return _this._router.navigate(['/donorprofile']); }, function (error) { return _this.errorMessage = error; });
     };
     DonorAuthComponent = __decorate([
         core_1.Component({

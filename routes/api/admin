@@ -7,9 +7,12 @@ var status = require('../../config/status');
 
 router.delete('/delete', function(req,res){
 
+        if(req.user.role) {
         recipientController.delete(req.body._id)
             .then((result)=>res.json(result))
             .catch((err)=>res.json(err));
+        }
+        else res.json(status.no_rights);
 
 });
 
@@ -17,19 +20,22 @@ router.delete('/delete', function(req,res){
 
 router.get('/new_recipients', function(req, res){
 
-        recipientController.getNew()
-            .then((result)=>res.json(result))
-            .catch((err)=>res.json(err));
-
+        if(req.user.role) {
+                recipientController.getNew()
+                    .then((result)=>res.json(result))
+                    .catch((err)=>res.json(err));
+        }
+        else res.json(status.no_rights);
 
 });
 
 router.post('/accept', function (req,res) {
-
-        recipientController.changeStatus(req.body._id)
-            .then((result)=>res.json(result))
-            .catch((err)=> res.json(err));
-
+        if(req.user.role) {
+                recipientController.changeStatus(req.body._id)
+                    .then((result)=>res.json(result))
+                    .catch((err)=> res.json(err));
+        }
+        else res.json(status.no_rights);
 });
 
 

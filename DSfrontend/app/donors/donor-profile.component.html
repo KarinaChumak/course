@@ -1,46 +1,46 @@
 
-<!--<h1>{{donor.name + ' ' + donor.surname }}</h1>-->
-
-<!--<div class ='container' *ngIf="donor.avatar">-->
-<!--<img src='data:image/jpg;base64,{{donor.avatar }}' width=100 height=100 />-->
-<!--</div>-->
-<!--<form action = '/donors/changeName' method = post>-->
-<!--New Name:-->
-<!--<input type = text name = 'newName'/>-->
-<!--<br/>-->
-<!--<input type = 'submit' value = 'Change name'/>-->
-<!--</form>-->
-<!--<form action='/api/profile/upload_avatar' method='POST' enctype="multipart/form-data">-->
-    <!--Avatar:-->
-    <!--<br />-->
-    <!--<input type='file' [(ngModel)]="avatar" base-sixty-four-input/>-->
-    <!--<br />-->
-    <!--<button type='submit' class='btn btn-primary btn-lg' (click)="OnAddAvatar()">Upload</button>-->
-<!--</form>-->
-<!--<br/>-->
-
-<!--<form action="/profile/update" method="get">-->
-    <!--<input type="submit" value="Change info"/>-->
-<!--</form>-->
-
-<!--New donation:-->
-<!--<br/>-->
- <!--<input type = 'date' [(ngModel)]="donation"/>-->
-<!--<br/>-->
-<!--<button type="submit" class="btn btn-primary btn-lg"  (click)="OnAddDonation()">Add</button>-->
-<!--<br/>-->
-<!--<button type="submit" class="btn btn-primary btn-lg"  (click)="OnLogOut()">Log out</button>-->
-<!--<br/>-->
-<!--<button type="submit" class="btn btn-primary btn-lg"  (click) = 'OnDeleteProfile()'>Delete profile</button>-->
-
-<mdl-card class="wide-card" mdl-shadow="6"  style=" width:1000px; heigth:300px;" >
+<mdl-card class="wide-card"  mdl-shadow="6"  style="position: absolute; top:60px;
+                        left:100px; width:1000px; heigth:300px;" >
     <mdl-card-title mdl-card-expand>
         <h2 mdl-card-title-text>{{donor.surname+ ' ' + donor.name}}</h2>
     </mdl-card-title>
+    <mdl-card-media style="background-color: white; margin: 20px;"  *ngIf="donor.avatar">
+        <img [src]="donor.avatar" >
+       <div  style="position: absolute; right:400px; top:100px;">
+           <mdl-chip mdl-label="Your donations"></mdl-chip>
+           <ul *ngFor="let donation of donor.donations" >
+               <li *ngIf="donation">{{donation.substring(0,10)}}</li>
+
+           </ul>
+
+       </div>
+
+    </mdl-card-media>
     <mdl-card-supporting-text>
-        {{donor.city}}
+
+
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+            <input class="mdl-textfield__input" placeholder="No file chosen" type="text" id="TEXT_ID" readonly />
+            <div class="mdl-button mdl-button--icon mdl-button--file">
+                <i class="material-icons">attach_file</i>
+                <input type="file" image-upload (imageSelected)="selected($event)" [resizeOptions]="resizeOptions" name="NAME" onchange="document.getElementById('TEXT_ID').value=this.files[0].name;" />
+            </div>
+        </div>
+        <mdl-button (click)="OnAddAvatar()">Download avatar</mdl-button>
+
+
+
+
+        <div>
+
+            <vaadin-date-picker label="Pick a date of donation"  [(value)]="donation"></vaadin-date-picker>
+            <mdl-button (click)="OnAddDonation()">Add donation</mdl-button>
+        </div>
+
     </mdl-card-supporting-text>
     <mdl-card-actions mdl-card-border>
+
         <button mdl-button mdl-colored mdl-ripple (click)="OnLogOut()">
             Log out
         </button>

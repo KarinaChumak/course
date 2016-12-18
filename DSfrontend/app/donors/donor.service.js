@@ -33,8 +33,9 @@ var DonorService = (function () {
             .do(function (data) { return console.log(JSON.stringify(data)); })
             .catch(this.handleError);
     };
-    DonorService.prototype.addDonation = function (donation) {
-        return this._http.post("/api/profile/addDonation", { donation: donation })
+    //todo
+    DonorService.prototype.addDonation = function (object) {
+        return this._http.post("/api/profile/addDonation", object)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log(JSON.stringify(data)); })
             .catch(this.handleError);
@@ -49,8 +50,8 @@ var DonorService = (function () {
         })
             .catch(this.handleError);
     };
-    DonorService.prototype.addAvatar = function (avatar) {
-        return this._http.post("/api/profile/upload_avatar", { avatar: avatar })
+    DonorService.prototype.addAvatar = function (object) {
+        return this._http.post("/api/profile/upload_avatar", object)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log(JSON.stringify(data)); })
             .catch(this.handleError);

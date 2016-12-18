@@ -65,4 +65,28 @@ var RhesusPipe = (function () {
     return RhesusPipe;
 }());
 exports.RhesusPipe = RhesusPipe;
+var RatingPipe = (function () {
+    function RatingPipe() {
+    }
+    RatingPipe.prototype.transform = function (donors) {
+        return donors.sort(function (n1, n2) {
+            if (n1.donations.length < n2.donations.length) {
+                return 1;
+            }
+            if (n1.donations.length > n2.donations.length) {
+                return -1;
+            }
+            else
+                return 0;
+        });
+    };
+    RatingPipe = __decorate([
+        core_1.Pipe({
+            name: 'ratingFilter'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], RatingPipe);
+    return RatingPipe;
+}());
+exports.RatingPipe = RatingPipe;
 //# sourceMappingURL=donor.pipe.js.map

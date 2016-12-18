@@ -1,4 +1,4 @@
-<mdl-card mdl-shadow="6" style="width: 400px; height: 400px; margin: 100px;" >
+<mdl-card mdl-shadow="6" style="width: 400px; height: 610px; margin: 50px;" >
    <div style="position: absolute; left: 30px;">
    <h3>New recipient card</h3>
     <mdl-textfield #firstElement
@@ -17,14 +17,24 @@
                     [(ngModel)] = 'recipient.surname'
                     floating-label ></mdl-textfield>
     <br/>
+
     <mdl-textfield
             type="text"
             label="Diagnose"
             pattern="^[a-z ,.'-]+$"
             error-msg="Incorrect diagnose"
+            [(ngModel)]="recipient.diagnose"
+            floating-label></mdl-textfield>
+    <br/>
+    <mdl-textfield
+            type="text"
+            label="City"
+            pattern="^[a-z ,.'-]+$"
+            error-msg="Incorrect city"
             [(ngModel)]="recipient.city"
             floating-label></mdl-textfield>
     <br/>
+
     <label>Group</label>
     <mdl-radio  value="1" [(ngModel)]="recipient.group" mdl-ripple> 1</mdl-radio>
     <mdl-radio  value="2" [(ngModel)]="recipient.group" mdl-ripple> 2</mdl-radio>
@@ -34,6 +44,22 @@
     <label>Rhesus</label>
     <mdl-radio  value="positive" [(ngModel)]="recipient.rhesus" mdl-ripple> +</mdl-radio>
     <mdl-radio  value="negative" [(ngModel)]="recipient.rhesus" mdl-ripple> -</mdl-radio>
+
+    <mdl-textfield  type = 'text'
+                    label="Email"
+                    [(ngModel)] = 'recipient.email'
+                    floating-label
+                    pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
+                    error-msg="Incorrect email!">></mdl-textfield>
+    <br/>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+     <input class="mdl-textfield__input" placeholder="No file chosen" type="text" id="TEXT_ID" readonly />
+     <div class="mdl-button mdl-button--icon mdl-button--file">
+      <i class="material-icons">attach_file</i>
+      <input type="file" image-upload (imageSelected)="selected($event)" [resizeOptions]="resizeOptions" name="NAME" onchange="document.getElementById('TEXT_ID').value=this.files[0].name;" />
+     </div>
+    </div>
 
     <div class="mdl-dialog__actions">
         <button mdl-button (click)="addRecipient()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Add a card</button>

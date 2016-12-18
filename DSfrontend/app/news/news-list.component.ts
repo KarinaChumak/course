@@ -22,6 +22,12 @@ export class NewsListComponent{
             this._router.navigate(['/addnews']);
         }
 
+        deleteNews(news:INews):void{
+            this._newsService.deleteNews(news)
+                .subscribe((data) => console.log(data),
+                    error => this.errorMessage = <any>error);
+        }
+
         ngOnInit():void{
                 this._newsService.getNews()
                     .subscribe(news => this.newslist = news,

@@ -23,7 +23,7 @@ var LoginComponent = (function () {
         this._authService.logIn(this.email, this.password)
             .subscribe(function () {
             if (_this._authService.admin)
-                _this._router.navigate(['/admin']);
+                _this._router.navigate(['/new_recipients']);
             else if (_this._authService.donor)
                 _this._router.navigate(['/donorprofile']);
             else

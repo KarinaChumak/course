@@ -1,4 +1,4 @@
-<mdl-card mdl-shadow="6" style="width: 400px; height: 400px; margin: 100px;" >
+<mdl-card mdl-shadow="6" style="width: 400px; height: 500px; margin: 100px;" >
     <div style="position: absolute; left: 30px;">
         <h3>New post</h3>
         <mdl-textfield #firstElement
@@ -10,7 +10,7 @@
         <br/>
         <mdl-textfield  type = 'text'
                         label="Content"
-                        rows="3" maxrows="3"
+                        rows="10" maxrows="30"
                         [(ngModel)] = "news.content"
                         floating-label ></mdl-textfield>
         <br/>

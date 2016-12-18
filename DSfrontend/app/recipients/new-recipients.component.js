@@ -25,13 +25,13 @@ var NewRecipientsComponent = (function () {
     };
     NewRecipientsComponent.prototype.acceptRecipient = function (recipient) {
         var _this = this;
-        recipient.acceptedColor = "chartreuse";
+        recipient.acceptedColor = "palegreen";
         this._adminService.acceptRecipient(recipient)
             .subscribe(function (status) { return console.log(status); }, function (error) { return _this.errorMessage = error; });
     };
     NewRecipientsComponent.prototype.deleteRecipient = function (recipient) {
         var _this = this;
-        recipient.acceptedColor = "red";
+        recipient.acceptedColor = "coral";
         this._adminService.deleteRecipient(recipient)
             .subscribe(function (status) { return console.log(status); }, function (error) { return _this.errorMessage = error; });
     };

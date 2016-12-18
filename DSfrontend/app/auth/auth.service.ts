@@ -11,8 +11,8 @@ import {IAdmin} from "../admin/admin";
 
 @Injectable()
 export class AuthService {
-   @LocalStorage()
-   public donor:IDonor ;
+    @LocalStorage()
+    public donor:IDonor ;
     @LocalStorage()
     public admin:IAdmin;
 
@@ -33,14 +33,17 @@ export class AuthService {
     }
 
     logIn(email:string, password:string):Observable<Response>{
+
         return this._http.post('/api/auth/logIn', {email :email, password: password})
             .map((response: Response)=>response.json())
             .do(data =>
                 {if(data.role)
                      {this.admin = <IAdmin>data;
+                         this.admin.password=null;
                       console.log(this.admin)}
                 else
                     {this.donor= <IDonor>data;
+                        this.donor.password=null;
                     console.log(this.donor)}})
             .catch(this.handleError);
     }

@@ -17,7 +17,7 @@ var DonorSchema = new Schema({
     },
     patronymic: {
         type: String,
-        required: true,
+      //  required: true,
         match: /^[a-z]+$/i
 
     },
@@ -41,7 +41,6 @@ var DonorSchema = new Schema({
     // area:String,
     // country: String,
     donations: [Date],
-    available: Boolean,
     group: {
         type:Number,
         required: true,

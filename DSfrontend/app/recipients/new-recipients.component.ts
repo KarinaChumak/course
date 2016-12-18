@@ -6,6 +6,7 @@ import {AdminService} from "../admin/admin.service";
 
 @Component({
     templateUrl:'app/recipients/new-recipients.component.html'
+
 })
 export  class NewRecipientsComponent{
     recipients: IRecipient[];
@@ -28,14 +29,14 @@ export  class NewRecipientsComponent{
     }
 
     acceptRecipient(recipient: IRecipient):void {
-        recipient.acceptedColor="chartreuse";
+        recipient.acceptedColor="palegreen";
         this._adminService.acceptRecipient(recipient)
             .subscribe(status => console.log(status),
                 error => this.errorMessage = <any>error);
     }
 
     deleteRecipient(recipient: IRecipient):void{
-        recipient.acceptedColor="red";
+        recipient.acceptedColor="coral";
         this._adminService.deleteRecipient(recipient)
             .subscribe(status => console.log(status),
                 error => this.errorMessage = <any>error);

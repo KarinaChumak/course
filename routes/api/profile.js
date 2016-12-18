@@ -9,28 +9,32 @@ var  status = require ('../../config/status');
 
 router.post('/upload_avatar',
     function (req,res){
-        if(req.user){
-            var avaFile = req.files.avatar;
-            var base64String = avaFile.data.toString('base64');
-            if(base64String){
-                donorsController.changeAvatar(req,base64String)
+        if(req.user) {
+                donorsController.changeAvatar(req)
                     .then((result)=>res.json(result))
-                    .catch((err)=> res.json(err));}
+                        .catch((err)=> res.json(err));
         }
-        else res.end('Err');
+    else res.json(status.no_rights);
+
     });
 
 
 router.delete('/delete', function(req,res){
-    donorsController.delete(req)
-        .then((result)=>res.json(result))
-        .catch((err)=> res.json(err));
+    if(req.user) {
+        donorsController.delete(req)
+            .then((result)=>res.json(result))
+            .catch((err)=> res.json(err));
+    }
+    else res.json(status.no_rights);
 });
 
 router.post('/update', function (req,res) {
+    if(req.user) {
     donorsController.update(req)
         .then((result)=>res.json(result))
         .catch((err)=>res.json(err));
+    }
+    else res.json(status.no_rights);
 
 });
 
@@ -62,6 +66,7 @@ router.get('/',function(req,res){
 });
 
 router.post('/addDonation',function(req,res){
+    console.log(req);
     donorsController.addDonation(req)
         .then((result)=>res.json(result))
         .catch((err)=>res.json(err));

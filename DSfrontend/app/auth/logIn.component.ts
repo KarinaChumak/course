@@ -21,7 +21,7 @@ export class LoginComponent{
         this._authService.logIn(this.email, this.password)
             .subscribe(()=>
             {
-                if(this._authService.admin) this._router.navigate(['/admin']);
+                if(this._authService.admin) this._router.navigate(['/new_recipients']);
                 else if(this._authService.donor) this._router.navigate(['/donorprofile']);
                 else console.log("oops");},
                 error => this.errorMessage = <any>error);

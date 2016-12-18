@@ -20,6 +20,7 @@ var DonorProfileUpdateComponent = (function () {
     }
     DonorProfileUpdateComponent.prototype.onUpdate = function () {
         var _this = this;
+        console.log(this.donorupdate);
         this._donorService.updateProfile(this.donorupdate)
             .subscribe(function () { return _this._router.navigate(['/donorprofile']); }, function (error) { return _this.errorMessage = error; });
     };
@@ -30,7 +31,7 @@ var DonorProfileUpdateComponent = (function () {
     DonorProfileUpdateComponent = __decorate([
         core_1.Component({
             templateUrl: 'app/donors/donor-profile-update.component.html',
-            styles: ["\n  \n    .absolute{position: absolute; left:30px;}\n    .relative{position: absolute; right: 30px;}\n    .mdl-dialog__actions{position: absolute; right: 50px;bottom: 10px}\n"]
+            styles: ["\n  \n    .absolute{position: absolute; left:30px;}\n    .relative{position: absolute; right: 30px;}\n    .mdl-dialog__actions{position: absolute; right: 50px;bottom: 10px}\n  \n\n"]
         }), 
         __metadata('design:paramtypes', [donor_service_1.DonorService, auth_service_1.AuthService, router_1.Router])
     ], DonorProfileUpdateComponent);

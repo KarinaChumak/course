@@ -30,6 +30,12 @@ var NewsService = (function () {
             .do(function (data) { return console.log(JSON.stringify(data)); })
             .catch(this.handleError);
     };
+    NewsService.prototype.deleteNews = function (news) {
+        return this._http.delete('/api/news/delete', new http_1.RequestOptions({ body: news }))
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log(JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
     NewsService.prototype.handleError = function (error) {
         // in a real world app, we may send the server to some remote logging infrastructure
         // instead of just logging it to the console

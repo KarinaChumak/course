@@ -9,11 +9,11 @@ var passport = require('passport');
 var session = require('express-session');
 var mongoose = require ('mongoose');
 
-
 var index = require('./routes/index');
 var admin = require('./routes/admin');
 var apiRouter = require('./routes/api');
 var profile = require('./routes/profile');
+
 
 
 var app = express();
@@ -31,26 +31,27 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(busboyBodyParser({ limit: '5mb' }));
-app.use(cookieParser());
 app.use(session({secret: 'GytR5'}));
+app.use(cookieParser());
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 require('./config/passport')(app);
 
 
-// app.use(function(req,res,next){
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//
-// // Request methods you wish to allow
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//
-// // Request headers you wish to allow
-//   res.setHeader('Access-Control-Allow-Headers', 'content-type');
-//
-// // Set to true if you need the website to include cookies in requests
-//   res.setHeader('Access-Control-Allow-Credentials', true);
-//   next();
-// });
+app.use(function(req,res,next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+// Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+
+// Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'content-type');
+
+// Set to true if you need the website to include cookies in requests
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
 
 app.use(express.static(path.join(__dirname, 'DSfrontend')));
 
